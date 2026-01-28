@@ -1,56 +1,84 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public InputActionAsset Inputactions;
+    public InputActionAsset inputActions;
 
     private InputAction m_moveAction;
     private InputAction m_jumpAction;
+    private InputAction m_pauseActionPlayer;
+    private InputAction m_pauseActionUi;
 
     private Vector2 m_moveAmt;
-    public Rigidbody2D m_rigidbodyb;
+    private Rigidbody2D m_rigidbodyb;
 
-    public float moveSpeed;
-    public float jumpPower;
+    public float moveSpeed = 5;
+    public float jumpPower = 5;
+    public float jumpTimeHoldable;
 
-    private Vector2 _moveDirection;
-    private bool _isJumping = false;
+    public GameObject PauseDisplay;
 
-    [Header("Inputs Used")]
-    public InputActionReference move;
-    public InputActionReference jump;
-
-    public void Update()
+    private void OnEnable()
     {
-        _moveDirection = move.action.ReadValue<Vector2>();
+        inputActions.FindActionMap("Player").Enable();
+    }
+    private void OnDisable()
+    {
+        inputActions.FindActionMap("Player").Disable();
+    }
+
+    private void Awake()
+    {
+        m_moveAction = InputSystem.actions.FindAction("Move");
+        m_jumpAction = InputSystem.actions.FindAction("Jump");
+
+        m_rigidbodyb = GetComponent<Rigidbody2D>();
+
+        m_pauseActionPlayer = InputSystem.actions.FindAction("Player/Menu");
+        m_pauseActionUi = InputSystem.actions.FindAction("UI/Menu");
+    }
+
+    private void Update()
+    {
+        m_moveAmt = m_moveAction.ReadValue<Vector2>();
+        if (m_jumpAction.IsPressed())
+        {
+            Jump();
+        }
+
+        DisplayPause();
+    }
+
+    public void Jump()
+    {
+        m_rigidbodyb.AddForceAtPosition(new Vector2(0, jumpPower), Vector2.up, ForceMode2D.Impulse);
     }
 
     private void FixedUpdate()
     {
-        m_rigidbodyb.position = new Vector2(m_rigidbodyb.position.x + (_moveDirection.x * moveSpeed), m_rigidbodyb.position.y);
-
-
-        // Working with side only movement
-        //rb.position = new Vector2(rb.position.x + (_moveDirection.x * moveSpeed), rb.position.y);
-
-        //working with vertical movement
-        //rb.position = new Vector2(rb.position.x + (_moveDirection.x * moveSpeed), rb.position.y + (_moveDirection.y * moveSpeed));
+        Walking();
+    }
+    public void Walking()
+    {
+        m_rigidbodyb.position = new Vector2(m_rigidbodyb.position.x + (m_moveAmt.x * moveSpeed), m_rigidbodyb.position.y);
     }
 
-    private void OnEnable()
+    private void DisplayPause()
     {
-        //_isJumping = true;
-        //jump.action.started += Jump;
-    }
-    private void OnDisable()
-    {
-        //_isJumping = false;
-        //jump.action.started -= Jump;
-    }
-    private void Jump(InputAction.CallbackContext obj)
-    {
-        m_rigidbodyb.position = new Vector2(m_rigidbodyb.position.x + (_moveDirection.x * moveSpeed), m_rigidbodyb.position.y + (1f * jumpPower));
+        if (m_pauseActionPlayer.WasPressedThisFrame())
+        {
+            PauseDisplay.SetActive(true);
+            inputActions.FindActionMap("Player").Disable();
+            inputActions.FindActionMap("UI").Enable();
+        }
+        else if (m_pauseActionUi.WasPressedThisFrame())
+        {
+            PauseDisplay.SetActive(false);
+            inputActions.FindActionMap("Player").Enable();
+            inputActions.FindActionMap("UI").Disable();
+        }
     }
 }

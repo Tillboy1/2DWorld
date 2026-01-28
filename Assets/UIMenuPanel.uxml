@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; opacity: 1;">
+        <ui:VisualElement enabled="true" style="flex-grow: 1; display: flex; align-self: stretch; justify-content: space-between; overflow: visible; -unity-background-image-tint-color: rgb(7, 7, 7); position: relative; height: 694px; top: auto; width: 1927px; left: auto; -unity-text-outline-color: rgb(255, 255, 255); background-color: rgb(120, 120, 120); opacity: 1;">
+            <ui:Button text="Button" style="width: 535px; height: 96px; position: absolute; top: auto; left: auto; bottom: 643px; right: auto; font-size: 30px;" />
+            <ui:Button text="Button" style="width: 535px; height: 96px; position: absolute; top: auto; left: auto; bottom: 431px; right: auto; font-size: 30px;" />
+            <ui:Button text="Button" style="width: 535px; height: 96px; position: absolute; top: auto; left: auto; bottom: 536px; right: auto; font-size: 30px;" />
+            <ui:Button text="Button" style="width: 535px; height: 96px; position: absolute; top: auto; left: auto; bottom: 323px; right: auto; font-size: 30px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
