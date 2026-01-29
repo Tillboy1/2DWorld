@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 m_moveAmt;
     private Rigidbody2D m_rigidbodyb;
 
+    [SerializeField]
+    public LayerMask groundMask;
+
     public float moveSpeed = 5;
     public float jumpPower = 5;
     public float jumpTimeHoldable;
@@ -44,7 +47,9 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         m_moveAmt = m_moveAction.ReadValue<Vector2>();
-        if (m_jumpAction.IsPressed())
+
+        Debug.DrawRay(this.transform.position, Vector2.down * 1.0f, Color.red);
+        if (m_jumpAction.IsPressed() && Groundcheck())
         {
             Jump();
         }
@@ -64,6 +69,15 @@ public class PlayerMovement : MonoBehaviour
     public void Walking()
     {
         m_rigidbodyb.position = new Vector2(m_rigidbodyb.position.x + (m_moveAmt.x * moveSpeed), m_rigidbodyb.position.y);
+    }
+    public bool Groundcheck()
+    {
+        RaycastHit2D hit;
+
+        hit = Physics2D.Raycast(this.transform.position, Vector2.down, 1.0f, groundMask);
+        Debug.DrawRay(this.transform.position, Vector2.down * 1.0f, Color.red);
+        
+        return hit;
     }
 
     private void DisplayPause()
