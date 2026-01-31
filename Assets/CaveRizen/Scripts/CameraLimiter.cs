@@ -13,30 +13,37 @@ public class CameraLimiter : MonoBehaviour
     public bool west;
 
     [Header("Size Of Space")]
-    public Vector2 SizeCapasity;
+    public Vector2 sizeCapasity;
+    public Vector3 areaOfset;
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.GetComponent<Camera>() != null && other.CompareTag("Camera"))
+        if (other.GetComponent<PlayerMovement>())
         {
-            var flowcamholder = other.transform.GetComponentInParent<FlowCamera>();
+            GameObject holder = other.GetComponent<PlayerMovement>().cameraHolder;
 
-            //Decides if the screen needs to be shown
-            if(flowcamholder.currentAreaName != AreaName)
+            if (holder.GetComponentInChildren<Camera>() != null && holder.transform.GetChild(0).CompareTag("MainCamera"))
             {
-                flowcamholder.EnteringNewArea(AreaName);
-            }
-            else
-            {
-                flowcamholder.currentAreaName = AreaName;
-            }
+                var flowcamholder = holder.GetComponent<FlowCamera>();
 
-            flowcamholder.locationsSpace = SizeCapasity;
+                //Decides if the screen needs to be shown
+                if (flowcamholder.currentAreaName != AreaName)
+                {
+                    flowcamholder.EnteringNewArea(AreaName);
+                }
+                else
+                {
+                    flowcamholder.currentAreaName = AreaName;
+                }
 
-            flowcamholder.limmitNorth = north;
-            flowcamholder.limmitEast = east;
-            flowcamholder.limmitSouth = south;
-            flowcamholder.limmitWest = west;
+                flowcamholder.locationsSpace = sizeCapasity;
+                flowcamholder.roomOfset = areaOfset;
+
+                flowcamholder.limmitNorth = north;
+                flowcamholder.limmitEast = east;
+                flowcamholder.limmitSouth = south;
+                flowcamholder.limmitWest = west;
+            }
         }
     }
 }

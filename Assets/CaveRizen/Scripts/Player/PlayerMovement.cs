@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject cameraHolder;
+
     public InputActionAsset inputActions;
 
     private InputAction m_moveAction;
