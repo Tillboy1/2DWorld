@@ -537,6 +537,7 @@ GameObject:
   - component: {fileID: 196514939}
   - component: {fileID: 196514944}
   - component: {fileID: 196514945}
+  - component: {fileID: 196514946}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -681,7 +682,7 @@ Transform:
   m_GameObject: {fileID: 196514938}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.92, y: 21.47, z: -0.0336708}
+  m_LocalPosition: {x: -10, y: 0.2, z: -0.0336708}
   m_LocalScale: {x: 0.75, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -822,6 +823,20 @@ MonoBehaviour:
   jumpPower: 2
   jumpTimeHoldable: 0
   PauseDisplay: {fileID: 286248133}
+--- !u!114 &196514946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196514938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde941857ebcdb34fa52e303e8515c4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 0
+  TotalHealth: 0
 --- !u!1 &220706473
 GameObject:
   m_ObjectHideFlags: 0
@@ -4102,6 +4117,7 @@ GameObject:
   - component: {fileID: 1257723294}
   - component: {fileID: 1257723293}
   - component: {fileID: 1257723292}
+  - component: {fileID: 1257723295}
   m_Layer: 0
   m_Name: Enemy Floor Crawler
   m_TagString: Untagged
@@ -4252,6 +4268,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1257723295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257723290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8ace51ff006244ab08624afb0ac1f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyName: 
+  description: 
+  id: 0
+  EnemySprite: {fileID: 0}
+  healthCurrent: 0
+  healthMax: 0
+  Sheild: 0
+  amountOfAttacks: 0
+  attackSpeed: 0
+  attacksPossible: []
 --- !u!1 &1266350358
 GameObject:
   m_ObjectHideFlags: 0
