@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
     {
         m_rigidbodyb.position = new Vector2(m_rigidbodyb.position.x + (m_moveAmt.x * moveSpeed), m_rigidbodyb.position.y);
     }
+
     public bool Groundcheck()
     {
         RaycastHit2D hit;

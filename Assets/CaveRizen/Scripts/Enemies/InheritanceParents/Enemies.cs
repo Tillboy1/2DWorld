@@ -112,6 +112,6 @@ public class AttacksSlots
 
     public float AttackRange;
 
-    public int attackDamageMax;
     public int attackDamageMin;
+    public int attackDamageMax;
 }
