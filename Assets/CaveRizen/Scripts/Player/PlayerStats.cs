@@ -51,9 +51,19 @@ public class PlayerStats : MonoBehaviour
 
     public void Direction()
     {
-        
-
-        if (m_moveAmt.y != 0) /// Looking Up
+        if (m_moveAmt.x > 0 && m_moveAmt.y == 0) // Looking Right
+        {
+            this.transform.rotation = new Quaternion(this.transform.rotation.x, 0, this.transform.rotation.z, 0);
+        }
+        else if (m_moveAmt.x < 0&& m_moveAmt.y == 0) // Looking Left
+        {
+            this.transform.rotation = new Quaternion(this.transform.rotation.x, 180, this.transform.rotation.z, 0);
+        }
+        else if (m_moveAmt.x != 0 && m_moveAmt.y != 0)
+        {
+             attackArea.transform.localPosition = new Vector3(attackOfSet * -m_moveAmt.x, attackOfSet * m_moveAmt.y);
+        }
+        else if (m_moveAmt.x == 0 && m_moveAmt.y != 0) /// Looking Up
         {
             //attackArea.transform.localPosition = new Vector3(0, attackOfSet);
 
@@ -62,16 +72,6 @@ public class PlayerStats : MonoBehaviour
         else // Looking strait Forward
         {
             attackArea.transform.localPosition = new Vector3(attackOfSet, 0);
-        }
-
-
-        if (m_moveAmt.x > 0) // Looking Right
-        {
-            this.transform.rotation = new Quaternion(this.transform.rotation.x, 0, this.transform.rotation.z, 0);
-        }
-        else if (m_moveAmt.x < 0) // Looking Left
-        {
-            this.transform.rotation = new Quaternion(this.transform.rotation.x, 180, this.transform.rotation.z, 0);
         }
     }
     public void TakeDamage(float damage)
