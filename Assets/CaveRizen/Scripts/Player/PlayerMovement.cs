@@ -77,8 +77,8 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit2D hit;
 
-        hit = Physics2D.Raycast(this.transform.position, Vector2.down, 0.8f, groundMask);
-        Debug.DrawRay(this.transform.position, Vector2.down * 1.0f, Color.red);
+        hit = Physics2D.Raycast(this.transform.position, Vector2.down, .9f, groundMask);
+        Debug.DrawRay(this.transform.position, Vector2.down * .9f, Color.red);
         
         return hit;
     }
