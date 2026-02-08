@@ -1,8 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerStats : MonoBehaviour
 {
+    public Vector2 lastRestLocation;
+
     public float CurrentHealth;
     public float TotalHealth;
 
@@ -14,6 +17,8 @@ public class PlayerStats : MonoBehaviour
     [Header("Combat")]
     public GameObject attackArea;
     public float attackOfSet;
+
+    public bool currentlyDead = false;
 
     private Vector2 m_moveAmt;
     private Rigidbody2D m_rigidbodyb;
@@ -46,22 +51,28 @@ public class PlayerStats : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Direction();
+        if (!currentlyDead)
+        {
+            Direction();
+        }
     }
 
     public void Direction()
     {
-        if (m_moveAmt.x > 0 && m_moveAmt.y == 0) // Looking Right
+        if (m_moveAmt.x != 0 && m_moveAmt.y != 0) // Diagonals
         {
-            this.transform.rotation = new Quaternion(this.transform.rotation.x, 0, this.transform.rotation.z, 0);
-        }
-        else if (m_moveAmt.x < 0&& m_moveAmt.y == 0) // Looking Left
-        {
-            this.transform.rotation = new Quaternion(this.transform.rotation.x, 180, this.transform.rotation.z, 0);
-        }
-        else if (m_moveAmt.x != 0 && m_moveAmt.y != 0)
-        {
-             attackArea.transform.localPosition = new Vector3(attackOfSet * -m_moveAmt.x, attackOfSet * m_moveAmt.y);
+            attackArea.transform.localPosition = new Vector3(attackOfSet * m_moveAmt.x, attackOfSet * m_moveAmt.y);
+
+            if(m_moveAmt.x > 0) // 
+            {
+                Debug.Log("GOING LEFT");
+                this.transform.rotation = new Quaternion(this.transform.rotation.x, 0, this.transform.rotation.z, 0);
+            }
+            if(m_moveAmt.x < 0)
+            {
+                Debug.Log("GOING Right");
+                this.transform.rotation = new Quaternion(this.transform.rotation.x, 180, this.transform.rotation.z, 0);
+            }
         }
         else if (m_moveAmt.x == 0 && m_moveAmt.y != 0) /// Looking Up
         {
@@ -73,6 +84,17 @@ public class PlayerStats : MonoBehaviour
         {
             attackArea.transform.localPosition = new Vector3(attackOfSet, 0);
         }
+
+        if (m_moveAmt.x > 0 && m_moveAmt.y == 0) // Looking Right
+        {
+            Debug.Log("Going Right");
+            this.transform.rotation = new Quaternion(this.transform.rotation.x, 0, this.transform.rotation.z, 0);
+        }
+        else if (m_moveAmt.x < 0 && m_moveAmt.y == 0) // Looking Left
+        {
+            Debug.Log("Going Left");
+            this.transform.rotation = new Quaternion(this.transform.rotation.x, 180, this.transform.rotation.z, 0);
+        }
     }
     public void TakeDamage(float damage)
     {
@@ -82,9 +104,27 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
-            CurrentHealth = 0;
-            this.GetComponent<SpriteRenderer>().color = Color.black;
-            Debug.Log("You Died");
+            Die();
         }
+    }
+    private void Die()
+    {
+        currentlyDead = true;
+        this.GetComponent<SpriteRenderer>().color = Color.black;
+        Debug.Log("Death Animation");
+
+        StartCoroutine(DeathCo());
+    }
+
+    IEnumerator DeathCo()
+    {
+        yield return new WaitForSeconds(2);
+
+        currentlyDead = false;
+
+        CurrentHealth = TotalHealth;
+        this.transform.position = lastRestLocation;
+
+        this.GetComponent<SpriteRenderer>().color = Color.white;
     }
 }

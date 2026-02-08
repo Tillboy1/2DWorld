@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         m_moveAmt = m_moveAction.ReadValue<Vector2>();
 
         Debug.DrawRay(this.transform.position, Vector2.down * 1.0f, Color.red);
-        if (m_jumpAction.IsPressed() && Groundcheck())
+        if (m_jumpAction.IsPressed() && Groundcheck() && this.gameObject.GetComponent<PlayerStats>().currentlyDead == false)
         {
             Jump();
         }
@@ -66,7 +66,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Walking();
+        if(this.gameObject.GetComponent<PlayerStats>().currentlyDead == false)
+        {
+            Walking();
+        }
     }
     public void Walking()
     {
