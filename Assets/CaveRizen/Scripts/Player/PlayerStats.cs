@@ -9,10 +9,13 @@ public class PlayerStats : MonoBehaviour
     public float CurrentHealth;
     public float TotalHealth;
 
+    public bool interacting;
+
     [Header("Direction")]
     public InputActionAsset inputActions;
 
     private InputAction m_moveAction;
+    private InputAction m_Interaction;
 
     [Header("Combat")]
     public GameObject attackArea;
@@ -36,6 +39,7 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         m_moveAction = InputSystem.actions.FindAction("Move");
+        m_Interaction = InputSystem.actions.FindAction("Interact");
         m_rigidbodyb = GetComponent<Rigidbody2D>();
     }
 
@@ -47,6 +51,12 @@ public class PlayerStats : MonoBehaviour
     private void Update()
     {
         m_moveAmt = m_moveAction.ReadValue<Vector2>();
+        if (m_Interaction.IsPressed() && interacting == false)
+        {
+            Debug.Log(interacting);
+            interacting = true;
+            StartCoroutine(InteractStop());
+        }
     }
 
     private void FixedUpdate()
@@ -116,6 +126,13 @@ public class PlayerStats : MonoBehaviour
         StartCoroutine(DeathCo());
     }
 
+
+
+    IEnumerator InteractStop()
+    {
+        yield return new WaitForSeconds(0.2f);
+        interacting = false;
+    }
     IEnumerator DeathCo()
     {
         yield return new WaitForSeconds(2);
