@@ -3,7 +3,14 @@ using UnityEngine;
 public abstract class InteractableBase : MonoBehaviour
 {
     public GameObject Player;
+    private GameObject InteractIcon;
     public bool playerInRange;
+
+    public void Awake()
+    {
+        InteractIcon = this.transform.GetChild(0).gameObject;
+        InteractIcon.SetActive(false);
+    }
 
     public void Update()
     {
@@ -20,6 +27,7 @@ public abstract class InteractableBase : MonoBehaviour
         {
             playerInRange = true;
             Player = collision.gameObject;
+            InteractIcon.SetActive(true);
         }
     }
 
@@ -29,6 +37,7 @@ public abstract class InteractableBase : MonoBehaviour
         {
             playerInRange = false;
             Player = null;
+            InteractIcon.SetActive(false);
         }
     }
 
