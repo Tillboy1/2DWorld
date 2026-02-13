@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: GameplayScreen_fr-FR
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: fr-FR
+  m_SharedData: {fileID: 11400000, guid: 07467763322f754449983bdc0362b27c, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 56034795520
+    m_Localized: "Difficult\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 233873285120
+    m_Localized: "Aide \xE0 la vis\xE9e du puzzle"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 303045746688
+    m_Localized: "Chronom\xE9trage du puzzle"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 375934361600
+    m_Localized: "Verrouiller la cam\xE9ra"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 420255571968
+    m_Localized: "Recentrez la cam\xE9ra en mode attaque"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 487892918272
+    m_Localized: Aide au mitraillage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 541907165184
+    m_Localized: Ramassage automatique
+    m_Metadata:
+      m_Items: []
+  - m_Id: 615584309248
+    m_Localized: Menus en attente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 655606358016
+    m_Localized: Style de mini-jeu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 728419475456
+    m_Localized: "Aide \xE0 la navigation"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 813593206784
+    m_Localized: "Appuis r\xE9p\xE9t\xE9s sur les boutons"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 885068341248
+    m_Localized: "Navigation des comp\xE9tences"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 938788986880
+    m_Localized: "Aide \xE0 la travers\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1031680237568
+    m_Localized: Mode Tutoriel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1092430536704
+    m_Localized: Gainage d'arme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4382740389888
+    m_Localized: STYLE DE JEU
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

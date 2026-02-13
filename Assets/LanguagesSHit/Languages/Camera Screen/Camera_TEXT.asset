@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: Camera_TEXT
+  m_EditorClassIdentifier: 
+  m_SharedTableData: {fileID: 11400000, guid: 39f7281b7cac9cb4bac50b33b7341b58, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: 834190b4c8d029c499d266466710dd5f, type: 2}
+  - {fileID: 11400000, guid: d49625bb394654f49b7c515232350038, type: 2}
+  - {fileID: 11400000, guid: 7df213238fb25bd4ca1c574ebc12b271, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []

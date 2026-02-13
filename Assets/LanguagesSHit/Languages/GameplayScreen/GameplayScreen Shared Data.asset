@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: GameplayScreen Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: GameplayScreen
+  m_TableCollectionNameGuidString: 07467763322f754449983bdc0362b27c
+  m_Entries:
+  - m_Id: 56034795520
+    m_Key: Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 233873285120
+    m_Key: Puzzle Aim Assist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 303045746688
+    m_Key: Puzzle Timing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 375934361600
+    m_Key: Lock On Camera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 420255571968
+    m_Key: Recentre Camera On Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 487892918272
+    m_Key: Strafe Assist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4382740389888
+    m_Key: PlayStyle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 541907165184
+    m_Key: Auto Pick Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 615584309248
+    m_Key: Menu Holds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 655606358016
+    m_Key: Mini-Game Style
+    m_Metadata:
+      m_Items: []
+  - m_Id: 728419475456
+    m_Key: Navigation Assist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 813593206784
+    m_Key: Repeated Button presses
+    m_Metadata:
+      m_Items: []
+  - m_Id: 885068341248
+    m_Key: Skills Navigation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 938788986880
+    m_Key: Traversal Assist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1031680237568
+    m_Key: Tutorial Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1092430536704
+    m_Key: Weapon Sheathing
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 717651534410678338
+  references:
+    version: 2
+    RefIds:
+    - rid: 717651534410678338
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1768264793217

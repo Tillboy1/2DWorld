@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Camera_TEXT_fr-FR
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: fr-FR
+  m_SharedData: {fileID: 11400000, guid: 39f7281b7cac9cb4bac50b33b7341b58, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 104994906112
+    m_Localized: Vitesse de rotation horizontale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 181591285760
+    m_Localized: Vitesse de rotation verticale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252550520832
+    m_Localized: "Inverser le contr\xF4le horizontal"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335144755200
+    m_Localized: "Inverser le contr\xF4le vertical"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 406523420672
+    m_Localized: "Balancement ambiant de la cam\xE9ra"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 484554252288
+    m_Localized: "Aide \xE0 la vis\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 623398297600
+    m_Localized: "Recentrage de la cam\xE9ra en mode attaque"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1631759310848
+    m_Localized: "CAM\xC9RA DE VIS\xC9E"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2178075795456
+    m_Localized: "CAM\xC9RA DE COMBAT"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

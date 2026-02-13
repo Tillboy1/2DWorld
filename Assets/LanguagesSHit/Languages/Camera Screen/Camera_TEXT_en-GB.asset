@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Camera_TEXT_en-GB
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en-GB
+  m_SharedData: {fileID: 11400000, guid: 39f7281b7cac9cb4bac50b33b7341b58, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 623398297600
+    m_Localized: Recenter Camera On Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 484554252288
+    m_Localized: Aim Assist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 406523420672
+    m_Localized: Ambient Camera SwayAmbient Camera Sway
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335144755200
+    m_Localized: Invert Vertical Control
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252550520832
+    m_Localized: Invert Horizontal Control
+    m_Metadata:
+      m_Items: []
+  - m_Id: 181591285760
+    m_Localized: Vertical Rotation Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104994906112
+    m_Localized: Horizontal Rotation Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1631759310848
+    m_Localized: AIM CAMERA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2178075795456
+    m_Localized: COMBAT CAMERA
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

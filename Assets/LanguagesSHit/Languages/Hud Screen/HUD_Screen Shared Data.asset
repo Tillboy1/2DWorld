@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: HUD_Screen Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: HUD_Screen
+  m_TableCollectionNameGuidString: 4cd9deb77c31cf34fadd0242395cd482
+  m_Entries:
+  - m_Id: 16109215744
+    m_Key: HUD Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65757192192
+    m_Key: Compass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106299334656
+    m_Key: Enemy Health Bars
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180488183808
+    m_Key: Boss Health Bar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 264168742912
+    m_Key: Enemy Off-Screen Indicators
+    m_Metadata:
+      m_Items: []
+  - m_Id: 378845208576
+    m_Key: Combat HUD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 431341117440
+    m_Key: Gameplay Notifications
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 717651534410678343
+  references:
+    version: 2
+    RefIds:
+    - rid: 717651534410678343
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1768266366146

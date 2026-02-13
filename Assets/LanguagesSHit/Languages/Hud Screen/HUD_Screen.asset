@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: HUD_Screen
+  m_EditorClassIdentifier: 
+  m_SharedTableData: {fileID: 11400000, guid: 4cd9deb77c31cf34fadd0242395cd482, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: ff21d89007226e745afd6e47ac335122, type: 2}
+  - {fileID: 11400000, guid: 2edb7e9e09b63d2458a705dadbe1948e, type: 2}
+  - {fileID: 11400000, guid: 38f890f4e56a77248ae44119f1c667ed, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []

@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Controls_Text Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Controls_Text
+  m_TableCollectionNameGuidString: 0dca52e6f7cd5874cb8c9d223f35140e
+  m_Entries:
+  - m_Id: 239434932224
+    m_Key: Move Forward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 314097737728
+    m_Key: Move Left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 327011999744
+    m_Key: Move Backwards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333836132352
+    m_Key: Move Right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 447245918208
+    m_Key: Melee Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 482943639552
+    m_Key: Ranged Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 515193643008
+    m_Key: Interact
+    m_Metadata:
+      m_Items: []
+  - m_Id: 538866294784
+    m_Key: Pick Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 594084306944
+    m_Key: Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614812557312
+    m_Key: Crouch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 637939949568
+    m_Key: Sprint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 662556319744
+    m_Key: Inventory
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 717651599716515914
+  references:
+    version: 2
+    RefIds:
+    - rid: 717651599716515914
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1768522982370
