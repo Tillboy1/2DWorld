@@ -1,4 +1,6 @@
+using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -7,14 +9,14 @@ public class PlayerMovement : MonoBehaviour
 {
     public GameObject cameraHolder;
 
-    public InputActionAsset inputActions;
-
-    private InputAction m_moveAction;
-    private InputAction m_jumpAction;
-    private InputAction m_pauseActionPlayer;
-    private InputAction m_pauseActionUi;
-
     private Vector2 m_moveAmt;
+    private bool isjumpHeld; // Clicking jump
+    private bool isHeldJump; // holding jump
+    private bool isOnGround;
+    private bool canJumpAgain = true;
+
+    private bool Abletointeract = true;
+
     private Rigidbody2D m_rigidbodyb;
 
     [SerializeField]
@@ -26,42 +28,46 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject PauseDisplay;
 
-    private void OnEnable()
-    {
-        inputActions.FindActionMap("Player").Enable();
-    }
-    private void OnDisable()
-    {
-        inputActions.FindActionMap("Player").Disable();
-    }
 
     private void Awake()
     {
-        m_moveAction = InputSystem.actions.FindAction("Move");
-        m_jumpAction = InputSystem.actions.FindAction("Jump");
-
         m_rigidbodyb = GetComponent<Rigidbody2D>();
-
-        m_pauseActionPlayer = InputSystem.actions.FindAction("Player/Menu");
-        m_pauseActionUi = InputSystem.actions.FindAction("UI/Menu");
+        canJumpAgain = true; 
+        Abletointeract = true;
     }
 
     private void Update()
     {
-        m_moveAmt = m_moveAction.ReadValue<Vector2>();
 
         Debug.DrawRay(this.transform.position, Vector2.down * 1.0f, Color.red);
-        if (m_jumpAction.IsPressed() && Groundcheck() && this.gameObject.GetComponent<PlayerStats>().currentlyDead == false)
-        {
-            Jump();
-        }
-
-        DisplayPause();
+        
+        Jump();
+        //DisplayPause();
     }
 
     public void Jump()
     {
-        m_rigidbodyb.AddForceAtPosition(new Vector2(0, jumpPower), Vector2.up, ForceMode2D.Impulse);
+        isOnGround = Groundcheck(1.1f);
+        // if is the jump button held
+        if (isjumpHeld)
+        {
+            // and if the player is on ground
+            if (isOnGround)
+            {
+                // can the player jump again, thisis the lock.
+                if (canJumpAgain)
+                {
+                    m_rigidbodyb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
+                    canJumpAgain = false;
+                    StartCoroutine(DelayedJump());
+                }
+            }
+            else if(isHeldJump)
+            {
+                m_rigidbodyb.AddForce(new Vector2(0, jumpPower));
+            }
+
+        }
     }
 
     private void FixedUpdate()
@@ -71,21 +77,41 @@ public class PlayerMovement : MonoBehaviour
             Walking();
         }
     }
+
+    public void MoveInput(InputAction.CallbackContext context)
+    {
+        m_moveAmt = context.ReadValue<Vector2>();
+    }
+
+    public void JumpInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            isHeldJump = true;
+        }
+        if (context.performed)
+        {
+            isHeldJump = false;
+        }
+        isjumpHeld = context.ReadValue<float>() > 0;
+    }
+
     public void Walking()
     {
         m_rigidbodyb.position = new Vector2(m_rigidbodyb.position.x + (m_moveAmt.x * moveSpeed), m_rigidbodyb.position.y);
     }
 
-    public bool Groundcheck()
+    public bool Groundcheck(float Length)
     {
         RaycastHit2D hit;
 
-        hit = Physics2D.Raycast(this.transform.position, Vector2.down, .9f, groundMask);
+        hit = Physics2D.Raycast(this.transform.position, Vector2.down, Length, groundMask);
         Debug.DrawRay(this.transform.position, Vector2.down * .9f, Color.red);
         
         return hit;
     }
 
+    /*
     private void DisplayPause()
     {
         if (m_pauseActionPlayer.WasPressedThisFrame())
@@ -100,5 +126,12 @@ public class PlayerMovement : MonoBehaviour
             inputActions.FindActionMap("Player").Enable();
             inputActions.FindActionMap("UI").Disable();
         }
+    }
+    */
+
+    IEnumerator DelayedJump()
+    {
+        yield return new WaitForSeconds(.1f);
+        canJumpAgain = true;
     }
 }

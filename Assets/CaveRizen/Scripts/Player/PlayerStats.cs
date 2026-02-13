@@ -10,12 +10,7 @@ public class PlayerStats : MonoBehaviour
     public float TotalHealth;
 
     public bool interacting;
-
-    [Header("Direction")]
-    public InputActionAsset inputActions;
-
-    private InputAction m_moveAction;
-    private InputAction m_Interaction;
+    private bool Abletointeract = true;
 
     [Header("Combat")]
     public GameObject attackArea;
@@ -26,20 +21,8 @@ public class PlayerStats : MonoBehaviour
     private Vector2 m_moveAmt;
     private Rigidbody2D m_rigidbodyb;
 
-
-    private void OnEnable()
-    {
-        inputActions.FindActionMap("Player").Enable();
-    }
-    private void OnDisable()
-    {
-        inputActions.FindActionMap("Player").Disable();
-    }
-
     private void Awake()
     {
-        m_moveAction = InputSystem.actions.FindAction("Move");
-        m_Interaction = InputSystem.actions.FindAction("Interact");
         m_rigidbodyb = GetComponent<Rigidbody2D>();
     }
 
@@ -48,21 +31,18 @@ public class PlayerStats : MonoBehaviour
         CurrentHealth = TotalHealth;
     }
 
-    private void Update()
+    public void Interact(InputAction.CallbackContext context)
     {
-        m_moveAmt = m_moveAction.ReadValue<Vector2>();
-        if (m_Interaction.IsPressed() && interacting == false)
+        if(Abletointeract == true)
         {
-            Debug.Log(interacting);
-            interacting = true;
-            StartCoroutine(InteractStop());
+            interacting = context.ReadValueAsButton();
         }
     }
-
-    private void FixedUpdate()
+    public void Direction(InputAction.CallbackContext context)
     {
         if (!currentlyDead)
         {
+            m_moveAmt = context.ReadValue<Vector2>();
             Direction();
         }
     }
@@ -106,6 +86,13 @@ public class PlayerStats : MonoBehaviour
             this.transform.rotation = new Quaternion(this.transform.rotation.x, 180, this.transform.rotation.z, 0);
         }
     }
+    public void Interacted()
+    {
+        interacting = false;
+        Abletointeract = false;
+        StartCoroutine(WaitReact());
+    }
+
     public void TakeDamage(float damage)
     {
         if (CurrentHealth - damage > 0)
@@ -126,12 +113,11 @@ public class PlayerStats : MonoBehaviour
         StartCoroutine(DeathCo());
     }
 
-
-
-    IEnumerator InteractStop()
+    IEnumerator WaitReact()
     {
-        yield return new WaitForSeconds(0.2f);
-        interacting = false;
+        yield return new WaitForSeconds(.3f);
+
+        Abletointeract = true;
     }
     IEnumerator DeathCo()
     {

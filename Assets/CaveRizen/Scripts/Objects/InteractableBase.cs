@@ -18,6 +18,7 @@ public abstract class InteractableBase : MonoBehaviour
         {
             Debug.Log("interacting");
             Interact();
+            Player.GetComponent<PlayerStats>().Interacted();
         }
     }
 
