@@ -15,8 +15,6 @@ public class PlayerMovement : MonoBehaviour
     private bool isOnGround;
     private bool canJumpAgain = true;
 
-    private bool Abletointeract = true;
-
     private Rigidbody2D m_rigidbodyb;
 
     [SerializeField]
@@ -33,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     {
         m_rigidbodyb = GetComponent<Rigidbody2D>();
         canJumpAgain = true; 
-        Abletointeract = true;
     }
 
     private void Update()
