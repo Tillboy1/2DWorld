@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcc6fd93754ed54fa8dd6e202a63064, type: 3}
+  m_Name: Common Key
+  m_EditorClassIdentifier: 
+  Id: 0
+  uiDisplay: {fileID: 0}
+  ObjectModel: {fileID: 0}
+  type: 0
+  Place: 0
+  Name: 
+  Description: 
+  HandsRequired: 1
+  Weight: 0
+  Stackable: 0
+  Equipable: 0
+  Attuneable: 0
+  Attuned: 0
+  buffs: []

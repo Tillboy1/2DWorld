@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f1602d56100d85449f3e5564b7b1e7d, type: 3}
-  m_Name: Simple Key
+  m_Script: {fileID: 11500000, guid: 4f9bb75db4d40944fb850ef45ad754b6, type: 3}
+  m_Name: Database
   m_EditorClassIdentifier: 
-  description: 
-  ableToStack: 1
-  amount: 0
-  icon: {fileID: 0}
-  cost: 0
+  Items:
+  - {fileID: 11400000, guid: 7ed55f0dd96db424a9922998c0062b65, type: 2}
