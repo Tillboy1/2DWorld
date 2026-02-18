@@ -1,6 +1,8 @@
 using System.Collections;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Progress;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -11,6 +13,15 @@ public class PlayerStats : MonoBehaviour
 
     public bool interacting;
     private bool Abletointeract = true;
+
+    [Header("Inventory")]
+    public InventoryObject inventory;
+
+    public int worldWideCurrency;
+    public int worldWideMaxCurrency;
+
+    public int[] LocalCurrency = new int[2];
+    public int localCurrencyMax;
 
     [Header("Combat")]
     public GameObject attackArea;
@@ -103,6 +114,111 @@ public class PlayerStats : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void PickUpItem(GameObject objectToPickUp)
+    {
+        GroundItem GroundObject = objectToPickUp.GetComponent<GroundItem>();
+
+        var item = GroundObject.gameObject.GetComponent<GroundItem>();
+
+        // Keiran testing
+
+        if (item.Item.IsCurrency)
+        {
+            if (item.Item.Id == 0)
+            {
+                if (GroundObject.amount + worldWideCurrency <= worldWideMaxCurrency)
+                {
+                    worldWideCurrency += GroundObject.amount;
+                }
+                else if (1 + worldWideCurrency < worldWideMaxCurrency)
+                {
+                    int count = 0;
+                    for (int i = 1; i < GroundObject.amount; i++)
+                    {
+                        if (worldWideCurrency + 1 * i < worldWideMaxCurrency)
+                        {
+                            count++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }  // this just counts how many be added to the inventory 
+
+                    worldWideCurrency += count;
+                    GroundObject.gameObject.GetComponent<GroundItem>().amount = GroundObject.amount - count;
+                }
+            }
+            else
+            {
+                LocalCurrency[0] += GroundObject.amount;
+
+
+                if (GroundObject.amount + LocalCurrency[0] <= localCurrencyMax)
+                {
+                    LocalCurrency[0] += GroundObject.amount;
+                }
+                else if (1 + LocalCurrency[0] < localCurrencyMax)
+                {
+                    int count = 0;
+                    for (int i = 1; i < GroundObject.amount; i++)
+                    {
+                        if (LocalCurrency[0] + 1 * i < localCurrencyMax)
+                        {
+                            count++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }  // this just counts how many be added to the inventory 
+
+                    LocalCurrency[0] += count;
+                    GroundObject.gameObject.GetComponent<GroundItem>().amount = GroundObject.amount - count;
+                }
+            }
+        }
+        else
+        {
+
+        }
+
+
+
+        /* From Old Script
+
+        if (item && item.Item.Weight * amount < CharacterSheet.Instance.CarryingWeight && CharacterSheet.Instance.CarryingWeight > CharacterSheet.Instance.Currentcarrying) // to take all items and remove the items
+        {
+            inventory.AddItem(new Item(item.Item), amount);
+            CharacterSheet.Instance.Currentcarrying += item.Item.Weight * amount;
+            Destroy(objectToPickUp.gameObject);
+        }
+        else if (item && item.Item.Weight < CharacterSheet.Instance.CarryingWeight && CharacterSheet.Instance.CarryingWeight > CharacterSheet.Instance.Currentcarrying) // incase all of them cant be added at once
+        {
+            int count = 0;
+            for (int i = 1; i < amount; i++)
+            {
+                if (item.Item.Weight * i < CharacterSheet.Instance.CarryingWeight)
+                {
+                    count++;
+                }
+                else
+                {
+                    break;
+                }
+            }  // this just counts how many be added to the inventory 
+
+            inventory.AddItem(new Item(item.Item), count);
+            CharacterSheet.Instance.Currentcarrying += item.Item.Weight * count;
+            GroundObject.gameObject.GetComponent<Grounditem>().amount = amount - count;
+        }
+        else
+        {
+            Debug.Log("Take none");
+        }
+        */
     }
     private void Die()
     {

@@ -96,9 +96,10 @@ public class ItemObject : ScriptableObject
     [TextArea(15, 20)]
     public string Description;
     public int HandsRequired = 1;
-    public float Weight;
 
     public bool Stackable;
+    public bool IsCurrency;
+
     public bool Equipable;
     public bool Attuneable;
     public bool Attuned;
@@ -120,7 +121,6 @@ public class Item
     public GameObject AssetModel;
 
     public int HandsRequired;
-    public float Weight;
 
     public bool Stackable;
     public bool Equipable;
@@ -147,7 +147,6 @@ public class Item
         Equipable = item.Equipable;
         Attuneable = item.Attuneable;
         Attuned = item.Attuned;
-        Weight = item.Weight;
         buffs = new ItemBuff[item.buffs.Length];
         type = item.type;
         Place = item.Place;

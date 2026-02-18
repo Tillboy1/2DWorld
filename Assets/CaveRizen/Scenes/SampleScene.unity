@@ -2805,6 +2805,7 @@ MonoBehaviour:
   CurrentHealth: 0
   TotalHealth: 5
   interacting: 0
+  inventory: {fileID: 11400000, guid: e6accdcd5467a9b4eb6ea45839f83df3, type: 2}
   attackArea: {fileID: 1615468141}
   attackOfSet: 1.25
   currentlyDead: 0
