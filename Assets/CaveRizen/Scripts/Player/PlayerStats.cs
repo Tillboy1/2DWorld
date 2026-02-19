@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +14,7 @@ public class PlayerStats : MonoBehaviour
     public float TotalHealth;
 
     public bool interacting;
-    private bool Abletointeract = true;
+    private bool ableToInteract = true;
 
     [Header("Inventory")]
     public InventoryObject inventory;
@@ -26,6 +28,8 @@ public class PlayerStats : MonoBehaviour
     [Header("Combat")]
     public GameObject attackArea;
     public float attackOfSet;
+    public int Damage;
+    private bool AbleToAttack = true;
 
     public bool currentlyDead = false;
 
@@ -44,7 +48,7 @@ public class PlayerStats : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if(Abletointeract == true)
+        if(ableToInteract == true)
         {
             interacting = context.ReadValueAsButton();
         }
@@ -100,10 +104,37 @@ public class PlayerStats : MonoBehaviour
     public void Interacted()
     {
         interacting = false;
-        Abletointeract = false;
+        ableToInteract = false;
         StartCoroutine(WaitReact());
     }
 
+
+    public void DealDamage(InputAction.CallbackContext context)
+    {
+        
+        List<GameObject> attackAreaObject = this.GetComponentInChildren<AttackArea>().Attackobject;
+
+        for (int i = 0; i < attackAreaObject.Count; i++)
+        {
+            if (attackAreaObject[i].transform.GetComponent<Enemies>())
+            {
+                if (AbleToAttack)
+                {
+                    Debug.Log("Hit Enemies with " + Damage + " Damage");
+                    attackAreaObject[i].transform.GetComponent<Enemies>().TakeDamage(Damage);
+                    AbleToAttack = false;
+                    StartCoroutine(WaitAttack());
+                }
+            }
+            else if (attackAreaObject[i].transform.GetComponent<InteractableBase>())
+            {
+                if (attackAreaObject[i].transform.GetComponent<InteractableBase>())
+                {
+                    Debug.Log("Hit Leaver?");
+                }
+            }
+        }
+    }
     public void TakeDamage(float damage)
     {
         if (CurrentHealth - damage > 0)
@@ -126,11 +157,13 @@ public class PlayerStats : MonoBehaviour
 
         if (item.Item.IsCurrency)
         {
+            Debug.Log("ID is " + GroundObject.Item.Id);
             if (item.Item.Id == 0)
             {
                 if (GroundObject.amount + worldWideCurrency <= worldWideMaxCurrency)
                 {
                     worldWideCurrency += GroundObject.amount;
+                    Destroy(objectToPickUp.gameObject);
                 }
                 else if (1 + worldWideCurrency < worldWideMaxCurrency)
                 {
@@ -233,7 +266,13 @@ public class PlayerStats : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
 
-        Abletointeract = true;
+        ableToInteract = true;
+    }
+    IEnumerator WaitAttack()
+    {
+        yield return new WaitForSeconds(.3f);
+
+        AbleToAttack = true;
     }
     IEnumerator DeathCo()
     {

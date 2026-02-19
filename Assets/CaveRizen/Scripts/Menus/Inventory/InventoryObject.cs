@@ -21,12 +21,6 @@ public class InventoryObject : ScriptableObject
 
     public void AddItem(Item _item, int _Amount)
     {
-        if (!_item.Stackable)
-        {
-            container.Items.Add(new InventorySlot(_item.Id, _item, _Amount));
-            return;
-        }
-
         for (int i = 0; i < container.Items.Count; i++)
         {
             if (container.Items[i].item.Id == _item.Id)

@@ -61,7 +61,8 @@ public class Enemies : MonoBehaviour
 
     public virtual void Die()
     {
-        Debug.Log("I Died");
+        Debug.Log(this.gameObject.name + " died");
+        Destroy(this.gameObject);
     }
 
 

@@ -5,6 +5,7 @@ public abstract class InteractableBase : MonoBehaviour
     public GameObject Player;
     private GameObject InteractIcon;
     public bool playerInRange;
+    public bool hitToInteract;
 
     public void Awake()
     {
