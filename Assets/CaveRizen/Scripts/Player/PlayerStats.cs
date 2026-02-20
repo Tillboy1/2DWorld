@@ -70,12 +70,10 @@ public class PlayerStats : MonoBehaviour
 
             if(m_moveAmt.x > 0) // 
             {
-                Debug.Log("GOING LEFT");
                 this.transform.rotation = new Quaternion(this.transform.rotation.x, 0, this.transform.rotation.z, 0);
             }
             if(m_moveAmt.x < 0)
             {
-                Debug.Log("GOING Right");
                 this.transform.rotation = new Quaternion(this.transform.rotation.x, 180, this.transform.rotation.z, 0);
             }
         }
@@ -92,12 +90,10 @@ public class PlayerStats : MonoBehaviour
 
         if (m_moveAmt.x > 0 && m_moveAmt.y == 0) // Looking Right
         {
-            Debug.Log("Going Right");
             this.transform.rotation = new Quaternion(this.transform.rotation.x, 0, this.transform.rotation.z, 0);
         }
         else if (m_moveAmt.x < 0 && m_moveAmt.y == 0) // Looking Left
         {
-            Debug.Log("Going Left");
             this.transform.rotation = new Quaternion(this.transform.rotation.x, 180, this.transform.rotation.z, 0);
         }
     }
@@ -130,6 +126,15 @@ public class PlayerStats : MonoBehaviour
                 if (attackAreaObject[i].transform.GetComponent<InteractableBase>())
                 {
                     Debug.Log("Hit Leaver?");
+                }
+            }
+            else if (attackAreaObject[i].transform.GetComponent<BreakableWall>())
+            {
+                if (AbleToAttack)
+                {
+                    attackAreaObject[i].transform.GetComponent<BreakableWall>().TakeDamage();
+                    AbleToAttack = false;
+                    StartCoroutine(WaitAttack());
                 }
             }
         }

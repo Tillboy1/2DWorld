@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class FlowCamera : MonoBehaviour
@@ -16,8 +18,12 @@ public class FlowCamera : MonoBehaviour
     public bool limmitSouth;
     public bool limmitWest;
 
+    private void Start()
+    {
+        this.transform.position = player.transform.position;
+    }
 
-    public void Update()
+    private void Update()
     {
         if (player.transform.position != this.transform.position)
         {
@@ -62,9 +68,20 @@ public class FlowCamera : MonoBehaviour
     {
         currentAreaName = area;
 
-        Debug.Log("entering " + area);
+        locationScreen.GetComponentInChildren<TMP_Text>().text = area;
+
+        StartCoroutine(AreaScreen());
 
         //locationScreen.SetActive(true);
         // Set the locationScreen
     } 
+
+    IEnumerator AreaScreen()
+    {
+        yield return new WaitForSeconds(.2f);
+        locationScreen.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+
+        locationScreen.SetActive(false);
+    }
 }

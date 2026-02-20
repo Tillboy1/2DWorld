@@ -6,7 +6,6 @@ public class AreaEnemies : Enemies
     public int amountToDropLow;
     public int amountToDropHigh;
 
-
     public virtual void Respawn()
     {
         currentHealth = maxHealth;
