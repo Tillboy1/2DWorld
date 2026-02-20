@@ -120,7 +120,6 @@ public class PlayerStats : MonoBehaviour
             {
                 if (AbleToAttack)
                 {
-                    Debug.Log("Hit Enemies with " + Damage + " Damage");
                     attackAreaObject[i].transform.GetComponent<Enemies>().TakeDamage(Damage);
                     AbleToAttack = false;
                     StartCoroutine(WaitAttack());
@@ -157,7 +156,6 @@ public class PlayerStats : MonoBehaviour
 
         if (item.Item.IsCurrency)
         {
-            Debug.Log("ID is " + GroundObject.Item.Id);
             if (item.Item.Id == 0)
             {
                 if (GroundObject.amount + worldWideCurrency <= worldWideMaxCurrency)

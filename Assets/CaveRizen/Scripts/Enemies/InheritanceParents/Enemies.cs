@@ -35,8 +35,8 @@ public class Enemies : MonoBehaviour
     //public anim holds the animator
 
     [Header("health")]
-    public int healthCurrent;
-    public int healthMax;
+    public int currentHealth;
+    public int maxHealth;
     public bool Sheild;
 
     [Header("Combat Stats")]
@@ -48,21 +48,20 @@ public class Enemies : MonoBehaviour
 
     public virtual void TakeDamage(int Damage)
     {
-        if (healthCurrent - Damage <= 0)
+        if (currentHealth - Damage <= 0)
         {
-            healthCurrent -= Damage;
+            currentHealth -= Damage;
             Die();
         }
         else
         {
-            healthCurrent -= Damage;
+            currentHealth -= Damage;
         }
     }
 
     public virtual void Die()
     {
-        Debug.Log(this.gameObject.name + " died");
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 
 
@@ -92,8 +91,8 @@ public class Attacklist
         Id = enemy.id;
         ImageSprite = enemy.EnemySprite;
 
-        healthCurrent = enemy.healthCurrent;
-        healthMax = enemy.healthMax;
+        healthCurrent = enemy.currentHealth;
+        healthMax = enemy.maxHealth;
         Sheild = enemy.Sheild;
 
         amountOfAttacks = enemy.amountOfAttacks;
