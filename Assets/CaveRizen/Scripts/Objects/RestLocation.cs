@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RestLocation : InteractableBase
 {
-    public GameObject World;
+    public GameObject Areas;
 
     public override void Interact()
     {
@@ -13,7 +13,7 @@ public class RestLocation : InteractableBase
     public void Rest()
     {
         Debug.Log("Rest");
-        foreach (Transform Object in World.transform)
+        foreach (Transform Object in Areas.transform)
         {
             foreach (Transform RoomsObjs in Object)
             {
