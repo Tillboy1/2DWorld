@@ -121,18 +121,20 @@ public class PlayerStats : MonoBehaviour
                     StartCoroutine(WaitAttack());
                 }
             }
-            else if (attackAreaObject[i].transform.GetComponent<InteractableBase>())
-            {
-                if (attackAreaObject[i].transform.GetComponent<InteractableBase>())
-                {
-                    Debug.Log("Hit Leaver?");
-                }
-            }
             else if (attackAreaObject[i].transform.GetComponent<BreakableWall>())
             {
                 if (AbleToAttack)
                 {
                     attackAreaObject[i].transform.GetComponent<BreakableWall>().TakeDamage();
+                    AbleToAttack = false;
+                    StartCoroutine(WaitAttack());
+                }
+            }
+            else if (attackAreaObject[i].transform.GetComponent<HitLever>())
+            {
+                if (AbleToAttack)
+                {
+                    attackAreaObject[i].transform.GetComponent<HitLever>().Interact();
                     AbleToAttack = false;
                     StartCoroutine(WaitAttack());
                 }
