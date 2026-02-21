@@ -17,13 +17,15 @@ public class RestLocation : InteractableBase
         {
             foreach (Transform RoomsObjs in Object)
             {
-                if (RoomsObjs.CompareTag("Enemy"))
+                foreach (Transform Objects in RoomsObjs)
                 {
-                    if (RoomsObjs.GetComponent<AreaEnemies>())
+                    if (Objects.CompareTag("Enemy"))
                     {
-                        RoomsObjs.GetComponent<AreaEnemies>().Respawn();
+                        if (Objects.GetComponent<AreaEnemies>())
+                        {
+                            Objects.GetComponent<AreaEnemies>().Respawn();
+                        }
                     }
-                    
                 }
             }
         }

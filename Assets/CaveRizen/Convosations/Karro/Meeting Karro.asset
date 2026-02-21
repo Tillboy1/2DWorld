@@ -16,7 +16,17 @@ MonoBehaviour:
   Convosation:
   - SpeakerName: Karro
     Description:
-    - 
-  - SpeakerName: Delshes
+    - Oh hi nice to meet you this doorway is a strange one itsn't it?
+    - Oh right introductions, I am Karro a member of the the Tresh Adventures guild
+      and you are?
+  - SpeakerName: Desh
     Description:
-    - 
+    - I am Desh seaming lost and unknowing of this land
+  - SpeakerName: Karro
+    Description:
+    - 'Oh so you dont know are roles then...
+
+      well i am a archeolical scout
+      to find ruins and gateways and try and find a way to enter and explore'
+    - There is also the Cartographer group who like to make maps! they are so usefull
+      to find your way around the zones!
