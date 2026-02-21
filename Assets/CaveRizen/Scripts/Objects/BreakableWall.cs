@@ -3,7 +3,6 @@ using UnityEngine;
 public class BreakableWall : MonoBehaviour
 {
     int CurrentHealth = 3;
-    int MaxHealth = 3;
     public GameObject NextRoomBreakable;
     public GameObject[] Doorways;
 
