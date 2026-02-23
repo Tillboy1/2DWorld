@@ -1,8 +1,6 @@
-using Unity.Hierarchy;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class GroundCrawler : AreaEnemies
+public class WallClimber : AreaEnemies
 {
     public override void Move()
     {
@@ -10,11 +8,22 @@ public class GroundCrawler : AreaEnemies
 
         transform.position = Vector2.MoveTowards(transform.position, Waypoints[nextWaypoint].transform.position, speed * Time.deltaTime);
 
-        if(distToPoint < 0.2f)
+        if (distToPoint < 0.2f)
         {
-            ChooseNextWaypoint();
+            TurnAround();
         }
     }
+
+    public void TurnAround()
+    {
+        Vector3 currRot = transform.eulerAngles;
+        currRot.z += Waypoints[nextWaypoint].transform.eulerAngles.z;
+        transform.eulerAngles = currRot;
+
+        ChooseNextWaypoint();
+    }
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerStats>())

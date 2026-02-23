@@ -13,8 +13,6 @@ public class Doorways : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Entered field");
-
         if (collision.gameObject.GetComponent<PlayerMovement>())
         {
             collision.transform.position = new Vector3(LocationToGo.x, LocationToGo.y, collision.transform.position.z);

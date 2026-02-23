@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isOnGround;
     private bool canJumpAgain = true;
 
-    private Rigidbody2D m_rigidbodyb;
+    public Rigidbody2D rb;
 
     [SerializeField]
     public LayerMask groundMask;
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        m_rigidbodyb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         canJumpAgain = true; 
     }
 
@@ -54,14 +54,14 @@ public class PlayerMovement : MonoBehaviour
                 // can the player jump again, thisis the lock.
                 if (canJumpAgain)
                 {
-                    m_rigidbodyb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
                     canJumpAgain = false;
                     StartCoroutine(DelayedJump());
                 }
             }
             else if(isHeldJump)
             {
-                m_rigidbodyb.AddForce(new Vector2(0, jumpPower));
+                rb.AddForce(new Vector2(0, jumpPower));
             }
 
         }
@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Walking()
     {
-        m_rigidbodyb.position = new Vector2(m_rigidbodyb.position.x + (m_moveAmt.x * moveSpeed), m_rigidbodyb.position.y);
+        rb.position = new Vector2(rb.position.x + (m_moveAmt.x * moveSpeed), rb.position.y);
     }
 
     public bool Groundcheck(float Length)

@@ -2,10 +2,47 @@ using UnityEngine;
 
 public class AreaEnemies : Enemies
 {
+    [Header("GoTo")]
+    public GameObject[] Waypoints;
+
+    public int nextWaypoint = 0;
+    public float distToPoint;
+    public float speed;
+
+    [Header("Drops")]
     public ItemObject[] Items;
     public int amountToDropLow;
     public int amountToDropHigh;
 
+
+    private void Update()
+    {
+        Move();
+    }
+
+    public virtual void Move()
+    {
+
+        distToPoint = Vector2.Distance(transform.position, Waypoints[nextWaypoint].transform.position);
+
+        transform.position = Vector2.MoveTowards(transform.position, Waypoints[nextWaypoint].transform.position, speed * Time.deltaTime);
+
+        if (distToPoint < 0.2f)
+        {
+            ChooseNextWaypoint();
+        }
+    }
+
+
+    public virtual void ChooseNextWaypoint()
+    {
+        // Switches between waypoints
+        nextWaypoint++;
+        if (nextWaypoint == Waypoints.Length)
+        {
+            nextWaypoint = 0;
+        }
+    }
     public virtual void Respawn()
     {
         currentHealth = maxHealth;
