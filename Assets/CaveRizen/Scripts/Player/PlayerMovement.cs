@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        isOnGround = Groundcheck(1.1f);
+        isOnGround = Groundcheck(0f);
         // if is the jump button held
         if (isjumpHeld)
         {
@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D hit;
 
         hit = Physics2D.Raycast(this.transform.position, Vector2.down, Length, groundMask);
-        Debug.DrawRay(this.transform.position, Vector2.down * .9f, Color.red);
+        Debug.DrawRay(this.transform.position, Vector2.down, Color.red);
         
         return hit;
     }
@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DelayedJump()
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.15f);
         canJumpAgain = true;
     }
 }
