@@ -10,6 +10,11 @@ public class PlayerStats : MonoBehaviour
 {
     public Vector2 lastRestLocation;
 
+    [Header("Stats")]
+    public GameObject StatsUI;
+    public GameObject HealthHolder;
+    public GameObject[] MaskUI = new GameObject[15];
+
     public float CurrentHealth;
     public float TotalHealth;
 
@@ -39,11 +44,31 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         m_rigidbodyb = GetComponent<Rigidbody2D>();
+        HealthHolder = StatsUI.transform.GetChild(0).GetChild(1).gameObject;
+
+        foreach (Transform masks in HealthHolder.transform)
+        {
+            MaskUI[HealthHolder.transform.childCount] = masks.gameObject;
+        }
     }
 
     public void Start()
     {
         CurrentHealth = TotalHealth;
+
+        for (int i = 0; i < HealthHolder.transform.childCount; i++)
+        {
+            Debug.Log(i + " vs " + HealthHolder.transform.childCount);
+
+            if (i < HealthHolder.transform.childCount && i > TotalHealth)
+            {
+                MaskUI[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                MaskUI[i].gameObject.SetActive(true);
+            }
+        }
     }
 
     public void Interact(InputAction.CallbackContext context)
