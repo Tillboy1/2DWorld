@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        isOnGround = Groundcheck(0f);
+        isOnGround = Groundcheck(1f);
         // if is the jump button held
         if (isjumpHeld)
         {
