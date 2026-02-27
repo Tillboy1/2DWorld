@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FlowCamera : MonoBehaviour
@@ -18,50 +19,55 @@ public class FlowCamera : MonoBehaviour
     public bool limmitSouth;
     public bool limmitWest;
 
-    private void Start()
-    {
-        this.transform.position = player.transform.position;
-    }
-
     private void Update()
     {
-        if (player.transform.position != this.transform.position)
+        if (player != null)
         {
-            var playpos = player.transform.position;
+            if (player.transform.position != this.transform.position)
+            {
+                var playpos = player.transform.position;
 
-            float inputX = playpos.x;
-            float inputY = playpos.y;
+                float inputX = playpos.x;
+                float inputY = playpos.y;
 
-            if (playpos.x > locationsSpace.x + roomOfset.x)
-            {
-                inputX = locationsSpace.x + roomOfset.x;
-            }
-            else if (playpos.x < -locationsSpace.x + roomOfset.x)
-            {
-                inputX = -locationsSpace.x + roomOfset.x;
-            }
-            else
-            {
-                inputX = playpos.x;
-            }
+                if (playpos.x > locationsSpace.x + roomOfset.x)
+                {
+                    inputX = locationsSpace.x + roomOfset.x;
+                }
+                else if (playpos.x < -locationsSpace.x + roomOfset.x)
+                {
+                    inputX = -locationsSpace.x + roomOfset.x;
+                }
+                else
+                {
+                    inputX = playpos.x;
+                }
 
-            if (playpos.y > locationsSpace.y + roomOfset.y)
-            {
-                inputY = locationsSpace.y + roomOfset.y;
-            }
-            else if(playpos.y < -locationsSpace.y + roomOfset.y)
-            {
-                inputY = -locationsSpace.y + roomOfset.y;
-            }
-            else
-            {
-                inputY = playpos.y;
-            }
+                if (playpos.y > locationsSpace.y + roomOfset.y)
+                {
+                    inputY = locationsSpace.y + roomOfset.y;
+                }
+                else if (playpos.y < -locationsSpace.y + roomOfset.y)
+                {
+                    inputY = -locationsSpace.y + roomOfset.y;
+                }
+                else
+                {
+                    inputY = playpos.y;
+                }
 
-            //this.transform.position = player.transform.position;
-            //this.transform.position = Vector3.Lerp(this.transform.position, player.transform.position, CameraMoveSpeed * Time.deltaTime);
-            this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(inputX, inputY, playpos.z), CameraMoveSpeed * Time.deltaTime);
+                //this.transform.position = player.transform.position;
+                //this.transform.position = Vector3.Lerp(this.transform.position, player.transform.position, CameraMoveSpeed * Time.deltaTime);
+                this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(inputX, inputY, playpos.z), CameraMoveSpeed * Time.deltaTime);
+            }
         }
+    }
+
+    public void NewPlayer()
+    {
+        Debug.Log("New Player");
+        player = FindFirstObjectByType<PlayerMovement>().gameObject;
+        this.transform.position = player.transform.position;
     }
 
     public void EnteringNewArea(string area)

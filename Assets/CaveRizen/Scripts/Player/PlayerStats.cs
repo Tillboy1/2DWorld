@@ -45,11 +45,12 @@ public class PlayerStats : MonoBehaviour
     {
         m_rigidbodyb = GetComponent<Rigidbody2D>();
         HealthHolder = StatsUI.transform.GetChild(0).GetChild(1).gameObject;
-
+        /*
         foreach (Transform masks in HealthHolder.transform)
         {
             MaskUI[HealthHolder.transform.childCount] = masks.gameObject;
         }
+        */
     }
 
     public void Start()
@@ -60,6 +61,7 @@ public class PlayerStats : MonoBehaviour
         {
             Debug.Log(i + " vs " + HealthHolder.transform.childCount);
 
+            /*
             if (i < HealthHolder.transform.childCount && i > TotalHealth)
             {
                 MaskUI[i].gameObject.SetActive(false);
@@ -68,6 +70,7 @@ public class PlayerStats : MonoBehaviour
             {
                 MaskUI[i].gameObject.SetActive(true);
             }
+            */
         }
     }
 
