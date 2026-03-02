@@ -10,6 +10,10 @@ public class CameraManager : MonoBehaviour
     public FlowCamera groupCamera;
     public List<PlayerMovement> allPlayers = new List<PlayerMovement>();
 
+    [SerializeField]
+    float splitDistance = 5f;
+    bool isCameraSplit;
+
     public void Awake()
     {
         if(instance == null)
@@ -40,11 +44,75 @@ public class CameraManager : MonoBehaviour
                 groupCamera.target = allpossitions / allPlayers.Count;
             }
         }
+        WorkingOutDistance();
     }
 
     private void WorkingOutDistance()
     {
+        for (int x = 0; x < allPlayers.Count; x++)
+        {
+            for (int y = 0; y < allPlayers.Count; y++)
+            {
+                if (allPlayers[x] != allPlayers[y])
+                {
+                    if ((allPlayers[x].transform.position - allPlayers[y].transform.position).magnitude > splitDistance)
+                    {
+                        if (!isCameraSplit)
+                        {
+                            SplitCamera(allPlayers[x].transform.position.x > allPlayers[y].transform.position.x);
+                        }
+                    }
+                    else
+                    {
+                        if (isCameraSplit)
+                        {
+                            MergeCameras();
+                        }
+                    }
+                }
+            }
+        }
+    }
 
+    public void SplitCamera(bool PlayerZeroOnLeft)
+    {
+        isCameraSplit = true;
+        for (int i = 0; i < allPlayers.Count; i++)
+        {
+            if(PlayerZeroOnLeft)
+            {
+                if(i == 0)
+                {
+                    allPlayers[i].CurrentCamera.ChangeState(true, new Rect(0, 0, 0.5f, 1));
+                }
+                else
+                {
+                    allPlayers[i].CurrentCamera.ChangeState(true, new Rect(0.5f, 0, 0.5f, 1));
+                }
+            }
+            else
+            {
+
+                if (i == 0)
+                {
+                    allPlayers[i].CurrentCamera.ChangeState(true, new Rect(0.5f, 0, 0.5f, 1));
+                }
+                else
+                {
+                    allPlayers[i].CurrentCamera.ChangeState(true, new Rect(0, 0, 0.5f, 1));
+                }
+            }
+        }
+    }
+
+    public void MergeCameras()
+    {
+        isCameraSplit = false;
+        for (int i = 0; i < allPlayers.Count; i++)
+        {
+
+            allPlayers[i].CurrentCamera.ChangeState(false, new Rect(0, 0, 1, 1));
+        }
     }
 
     public void PlayerJoined(PlayerInput player)
