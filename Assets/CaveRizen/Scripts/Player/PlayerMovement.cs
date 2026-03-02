@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor.Build;
@@ -7,7 +8,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject cameraHolder;
+    [SerializeField]
+    FlowCamera PrefabCamera;
+    public FlowCamera CurrentCamera;
 
     private Vector2 m_moveAmt;
     private bool isjumpHeld; // Clicking jump
@@ -33,9 +36,13 @@ public class PlayerMovement : MonoBehaviour
         canJumpAgain = true; 
     }
 
+    private void Start()
+    {
+        CurrentCamera = Instantiate(PrefabCamera);
+        CurrentCamera.player = this.gameObject;
+    }
     private void Update()
     {
-
         Debug.DrawRay(this.transform.position, Vector2.down * 1.0f, Color.red);
         
         Jump();

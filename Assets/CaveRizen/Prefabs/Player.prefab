@@ -347,7 +347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cf5c566a6e4cc409095d4265fa0551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraHolder: {fileID: 0}
+  PrefabCamera: {fileID: 8903531663362023329, guid: 6f35d3c528df54e489cfa977ba53b19f, type: 3}
+  CurrentCamera: {fileID: 0}
   rb: {fileID: 0}
   groundMask:
     serializedVersion: 2
