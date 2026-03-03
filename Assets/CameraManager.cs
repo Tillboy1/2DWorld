@@ -13,6 +13,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     float splitDistance = 5f;
     bool isCameraSplit;
+    bool isLeftScreenDiffRooms;
 
     public void Awake()
     {
@@ -39,6 +40,7 @@ public class CameraManager : MonoBehaviour
                     allpossitions = allpossitions + player.transform.position;
                 }
 
+                Debug.Log(groupCamera);
                 groupCamera.GetComponent<FlowCamera>().locationsSpace = allPlayers[0].CurrentCamera.GetComponent<FlowCamera>().locationsSpace;
                 groupCamera.GetComponent<FlowCamera>().roomOfset = allPlayers[0].CurrentCamera.GetComponent<FlowCamera>().roomOfset;
                 groupCamera.target = allpossitions / allPlayers.Count;
@@ -53,22 +55,29 @@ public class CameraManager : MonoBehaviour
         {
             for (int y = 0; y < allPlayers.Count; y++)
             {
-                if (allPlayers[x] != allPlayers[y])
+                if (allPlayers[x].CurrentCamera.GetComponent<FlowCamera>().roomOfset == allPlayers[y].CurrentCamera.GetComponent<FlowCamera>().roomOfset)
                 {
-                    if ((allPlayers[x].transform.position - allPlayers[y].transform.position).magnitude > splitDistance)
+                    if (allPlayers[x] != allPlayers[y])
                     {
-                        if (!isCameraSplit)
+                        if ((allPlayers[x].transform.position - allPlayers[y].transform.position).magnitude > splitDistance)
                         {
-                            SplitCamera(allPlayers[x].transform.position.x > allPlayers[y].transform.position.x);
+                            if (!isCameraSplit)
+                            {
+                                SplitCamera(allPlayers[x].transform.position.x < allPlayers[y].transform.position.x);
+                            }
+                        }
+                        else
+                        {
+                            if (isCameraSplit)
+                            {
+                                MergeCameras();
+                            }
                         }
                     }
-                    else
-                    {
-                        if (isCameraSplit)
-                        {
-                            MergeCameras();
-                        }
-                    }
+                }
+                else
+                {
+                    SplitCamera(isLeftScreenDiffRooms);
                 }
             }
         }
@@ -76,6 +85,7 @@ public class CameraManager : MonoBehaviour
 
     public void SplitCamera(bool PlayerZeroOnLeft)
     {
+        isLeftScreenDiffRooms = PlayerZeroOnLeft;
         isCameraSplit = true;
         for (int i = 0; i < allPlayers.Count; i++)
         {
