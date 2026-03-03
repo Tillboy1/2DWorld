@@ -10,6 +10,7 @@ public class FlowCamera : MonoBehaviour
     public Camera cam => this.GetComponentInChildren<Camera>();
 
     public GameObject player;
+    public Vector2 Roomspace;
     public Vector2 locationsSpace;
     public Vector3 roomOfset;
 

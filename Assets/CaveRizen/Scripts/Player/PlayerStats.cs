@@ -128,7 +128,7 @@ public class PlayerStats : MonoBehaviour
         {
             UIOpen = true;
             BaseLineUI.SetActive(true);
-            UIScreens[4].gameObject.SetActive(true);
+            UIScreens[3].gameObject.SetActive(true);
 
             AbleToMove = false;
         }

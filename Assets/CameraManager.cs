@@ -86,6 +86,7 @@ public class CameraManager : MonoBehaviour
     {
         isLeftScreenDiffRooms = PlayerZeroOnLeft;
         isCameraSplit = true;
+
         for (int i = 0; i < allPlayers.Count; i++)
         {
             if(PlayerZeroOnLeft)
@@ -111,6 +112,9 @@ public class CameraManager : MonoBehaviour
                     allPlayers[i].CurrentCamera.ChangeState(true, new Rect(0, 0, 0.5f, 1));
                 }
             }
+
+            allPlayers[i].CurrentCamera.GetComponent<FlowCamera>().Roomspace = allPlayers[i].CurrentCamera.GetComponent<FlowCamera>().locationsSpace;
+            allPlayers[i].CurrentCamera.GetComponent<FlowCamera>().locationsSpace.x += 3;
         }
     }
 
