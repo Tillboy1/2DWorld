@@ -23,7 +23,6 @@ public class CameraLimiter : MonoBehaviour
             
             FlowCamera holder = other.GetComponent<PlayerMovement>().CurrentCamera;
             
-            Debug.Log("test 1");
             if (holder.GetComponentInChildren<Camera>() != null && holder.transform.GetChild(0).CompareTag("MainCamera"))
             {
                 var flowcamholder = holder.GetComponent<FlowCamera>();
@@ -35,11 +34,10 @@ public class CameraLimiter : MonoBehaviour
 
     public void EnteringArea(FlowCamera flowcamholder)
     {
-        Debug.Log("Entering area");
         //Decides if the screen needs to be shown
         if (flowcamholder.currentAreaName != AreaName)
         {
-            //flowcamholder.EnteringNewArea(AreaName);
+            flowcamholder.EnteringNewArea(AreaName);
         }
         else
         {

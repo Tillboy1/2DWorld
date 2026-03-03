@@ -132,7 +132,7 @@ public class FlowCamera : MonoBehaviour
 
         StartCoroutine(AreaScreen());
 
-        //locationScreen.SetActive(true);
+        locationScreen.SetActive(true);
         // Set the locationScreen
     } 
 

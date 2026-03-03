@@ -38,8 +38,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        CurrentCamera = Instantiate(PrefabCamera);
+        CurrentCamera = Instantiate(PrefabCamera, this.GetComponent<PlayerStats>().lastRestLocation, new Quaternion(0,0,0, 0));
         CurrentCamera.player = this.gameObject;
+        CurrentCamera.locationScreen = this.GetComponent<PlayerStats>().LocationUi;
     }
     private void Update()
     {
@@ -51,32 +52,35 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        isOnGround = Groundcheck(1f);
-        // if is the jump button held
-        if (isjumpHeld)
+        if (this.gameObject.GetComponent<PlayerStats>().currentlyDead == false && this.gameObject.GetComponent<PlayerStats>().AbleToMove == true)
         {
-            // and if the player is on ground
-            if (isOnGround)
+            isOnGround = Groundcheck(1f);
+            // if is the jump button held
+            if (isjumpHeld)
             {
-                // can the player jump again, thisis the lock.
-                if (canJumpAgain)
+                // and if the player is on ground
+                if (isOnGround)
                 {
-                    rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
-                    canJumpAgain = false;
-                    StartCoroutine(DelayedJump());
+                    // can the player jump again, thisis the lock.
+                    if (canJumpAgain)
+                    {
+                        rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
+                        canJumpAgain = false;
+                        StartCoroutine(DelayedJump());
+                    }
                 }
-            }
-            else if(isHeldJump)
-            {
-                rb.AddForce(new Vector2(0, jumpPower));
-            }
+                else if (isHeldJump)
+                {
+                    rb.AddForce(new Vector2(0, jumpPower));
+                }
 
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        if(this.gameObject.GetComponent<PlayerStats>().currentlyDead == false)
+        if(this.gameObject.GetComponent<PlayerStats>().currentlyDead == false && this.gameObject.GetComponent<PlayerStats>().AbleToMove)
         {
             Walking();
         }
@@ -114,24 +118,6 @@ public class PlayerMovement : MonoBehaviour
         
         return hit;
     }
-
-    /*
-    private void DisplayPause()
-    {
-        if (m_pauseActionPlayer.WasPressedThisFrame())
-        {
-            PauseDisplay.SetActive(true);
-            inputActions.FindActionMap("Player").Disable();
-            inputActions.FindActionMap("UI").Enable();
-        }
-        else if (m_pauseActionUi.WasPressedThisFrame())
-        {
-            PauseDisplay.SetActive(false);
-            inputActions.FindActionMap("Player").Enable();
-            inputActions.FindActionMap("UI").Disable();
-        }
-    }
-    */
 
     IEnumerator DelayedJump()
     {

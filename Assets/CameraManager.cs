@@ -40,7 +40,6 @@ public class CameraManager : MonoBehaviour
                     allpossitions = allpossitions + player.transform.position;
                 }
 
-                Debug.Log(groupCamera);
                 groupCamera.GetComponent<FlowCamera>().locationsSpace = allPlayers[0].CurrentCamera.GetComponent<FlowCamera>().locationsSpace;
                 groupCamera.GetComponent<FlowCamera>().roomOfset = allPlayers[0].CurrentCamera.GetComponent<FlowCamera>().roomOfset;
                 groupCamera.target = allpossitions / allPlayers.Count;

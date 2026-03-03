@@ -1,8 +1,10 @@
+using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
+using UnityEngine.Device;
 using UnityEngine.InputSystem;
 using static UnityEditor.Progress;
 
@@ -10,7 +12,14 @@ public class PlayerStats : MonoBehaviour
 {
     public Vector2 lastRestLocation;
 
-    [Header("Stats")]
+    [Header("UI")]
+    public GameObject UICanvas;
+    public GameObject BaseLineUI;
+    public GameObject LocationUi;
+    public GameObject[] UIScreens;
+    public bool UIOpen;
+
+    [Header("Health")]
     public GameObject StatsUI;
     public GameObject HealthHolder;
     public GameObject[] MaskUI = new GameObject[15];
@@ -36,6 +45,7 @@ public class PlayerStats : MonoBehaviour
     public int Damage;
     private bool AbleToAttack = true;
 
+    public bool AbleToMove = true;
     public bool currentlyDead = false;
 
     private Vector2 m_moveAmt;
@@ -43,6 +53,29 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
+        int UItempnumber = 0;
+        foreach (Transform UiSlot in UICanvas.transform)
+        {
+            if (UiSlot.gameObject.name == "Baseline")
+            {
+                BaseLineUI = UiSlot.gameObject;
+            }
+            else if (UiSlot.gameObject.name == "Location UI")
+            {
+                LocationUi = UiSlot.gameObject;
+            }
+            else if (UiSlot.gameObject.name == "Basic Stats")
+            {
+                StatsUI = UiSlot.gameObject;
+            }
+            else
+            {
+                UIScreens[UItempnumber] = UiSlot.gameObject;
+                UItempnumber++;
+
+            }
+        }
+
         m_rigidbodyb = GetComponent<Rigidbody2D>();
         //HealthHolder = StatsUI.transform.GetChild(0).GetChild(1).gameObject;
         /*
@@ -56,27 +89,27 @@ public class PlayerStats : MonoBehaviour
     public void Start()
     {
         CurrentHealth = TotalHealth;
-            /*
+        /*
 
-        for (int i = 0; i < HealthHolder.transform.childCount; i++)
+    for (int i = 0; i < HealthHolder.transform.childCount; i++)
+    {
+        Debug.Log(i + " vs " + HealthHolder.transform.childCount);
+
+        if (i < HealthHolder.transform.childCount && i > TotalHealth)
         {
-            Debug.Log(i + " vs " + HealthHolder.transform.childCount);
-
-            if (i < HealthHolder.transform.childCount && i > TotalHealth)
-            {
-                MaskUI[i].gameObject.SetActive(false);
-            }
-            else
-            {
-                MaskUI[i].gameObject.SetActive(true);
-            }
+            MaskUI[i].gameObject.SetActive(false);
         }
-            */
+        else
+        {
+            MaskUI[i].gameObject.SetActive(true);
+        }
+    }
+        */
     }
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if(ableToInteract == true)
+        if (ableToInteract == true)
         {
             interacting = context.ReadValueAsButton();
         }
@@ -88,6 +121,49 @@ public class PlayerStats : MonoBehaviour
             m_moveAmt = context.ReadValue<Vector2>();
             Direction();
         }
+    }
+    public void OpenMap(InputAction.CallbackContext context)
+    {
+        if (!UIOpen)
+        {
+            UIOpen = true;
+            BaseLineUI.SetActive(true);
+            UIScreens[4].gameObject.SetActive(true);
+
+            AbleToMove = false;
+        }
+        else
+        {
+            UIOpen = false;
+            BaseLineUI.SetActive(false);
+            for (int i = 0; i < UIScreens.Length; i++)
+            {
+                UIScreens[i].gameObject.SetActive(false);
+            }
+            AbleToMove = true;
+        }
+    }
+    public void MenuBTN(InputAction.CallbackContext context)
+    {
+        if (!UIOpen)
+        {
+            UIOpen = true;
+            BaseLineUI.SetActive(true);
+            UIScreens[0].gameObject.SetActive(true);
+
+            AbleToMove = false;
+        }
+        else
+        {
+            UIOpen = false;
+            BaseLineUI.SetActive(false);
+            for (int i = 0; i < UIScreens.Length; i++)
+            {
+                UIScreens[i].gameObject.SetActive(false);
+            }
+            AbleToMove = true;
+        }
+
     }
 
     public void Direction()
