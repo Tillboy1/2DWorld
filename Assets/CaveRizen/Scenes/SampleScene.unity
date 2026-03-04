@@ -26185,7 +26185,7 @@ MonoBehaviour:
   - {fileID: 246510257}
   nextWaypoint: 0
   distToPoint: 0
-  speed: 5
+  speed: 3
   Items: []
   amountToDropLow: 0
   amountToDropHigh: 0
@@ -35397,7 +35397,7 @@ MonoBehaviour:
   - {fileID: 638667402}
   nextWaypoint: 0
   distToPoint: 0
-  speed: 5
+  speed: 3
   Items: []
   amountToDropLow: 0
   amountToDropHigh: 0
