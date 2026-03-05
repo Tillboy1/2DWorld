@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     public LayerMask groundMask;
+    public Vector2 LastStableGround;
 
     public float moveSpeed = 5;
     public float jumpPower = 5;
@@ -33,12 +34,10 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        canJumpAgain = true; 
-    }
+        canJumpAgain = true;
 
-    private void Start()
-    {
-        CurrentCamera = Instantiate(PrefabCamera, this.GetComponent<PlayerStats>().lastRestLocation, new Quaternion(0,0,0, 0));
+
+        CurrentCamera = Instantiate(PrefabCamera, this.GetComponent<PlayerStats>().lastRestLocation, new Quaternion(0, 0, 0, 0));
         CurrentCamera.player = this.gameObject;
         CurrentCamera.locationScreen = this.GetComponent<PlayerStats>().LocationUi;
     }
@@ -61,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
                 // and if the player is on ground
                 if (isOnGround)
                 {
+                    LastStableGround = this.transform.position;
                     // can the player jump again, thisis the lock.
                     if (canJumpAgain)
                     {
@@ -117,6 +117,10 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(this.transform.position, Vector2.down, Color.red);
         
         return hit;
+    }
+    public void ReturnToStable()
+    {
+        this.transform.position = LastStableGround;
     }
 
     IEnumerator DelayedJump()

@@ -6,7 +6,7 @@ using UnityEngine;
 public class FlowCamera : MonoBehaviour
 {
     public string currentAreaName;
-    public GameObject locationScreen;
+    public GameObject locationScreen = null;
     public Camera cam => this.GetComponentInChildren<Camera>();
 
     public GameObject player;
@@ -128,6 +128,8 @@ public class FlowCamera : MonoBehaviour
     public void EnteringNewArea(string area)
     {
         currentAreaName = area;
+
+        locationScreen = player.GetComponent<PlayerStats>().LocationUi;
 
         locationScreen.GetComponentInChildren<TMP_Text>().text = area;
 

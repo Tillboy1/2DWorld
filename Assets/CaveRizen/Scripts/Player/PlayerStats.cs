@@ -16,6 +16,7 @@ public class PlayerStats : MonoBehaviour
     public GameObject UICanvas;
     public GameObject BaseLineUI;
     public GameObject LocationUi;
+    public GameObject ConvostaionUI;
     public GameObject[] UIScreens;
     public bool UIOpen;
 
@@ -67,6 +68,10 @@ public class PlayerStats : MonoBehaviour
             else if (UiSlot.gameObject.name == "Basic Stats")
             {
                 StatsUI = UiSlot.gameObject;
+            }
+            else if (UiSlot.gameObject.name == "Convosation UI")
+            {
+                ConvostaionUI = UiSlot.gameObject;
             }
             else
             {

@@ -11,7 +11,7 @@ public class Spikes : MonoBehaviour
         if(collision.GetComponent<PlayerStats>())
         {
             collision.GetComponent<PlayerStats>().TakeDamage(damage);
-            collision.GetComponent<PlayerMovement>().rb.AddForceAtPosition(new Vector2(0, 3000), new Vector3(this.transform.position.x, collision.transform.position.y - 2f, collision.transform.position.z));
+            collision.GetComponent<PlayerMovement>().ReturnToStable();
         }
         if (collision.GetComponent<Enemies>())
         {
