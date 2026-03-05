@@ -14,6 +14,8 @@ public class PlayerStats : MonoBehaviour
 
     [Header("UI")]
     public GameObject UICanvas;
+
+    public GameObject MenuUI;
     public GameObject BaseLineUI;
     public GameObject LocationUi;
     public GameObject ConvostaionUI;
@@ -48,6 +50,11 @@ public class PlayerStats : MonoBehaviour
 
     public bool AbleToMove = true;
     public bool currentlyDead = false;
+    public bool IsResting;
+
+    [Header("Shell")]
+    public bool CurrentShell;
+    public bool[] ShellsUnlocked;
 
     private Vector2 m_moveAmt;
     private Rigidbody2D m_rigidbodyb;
@@ -73,11 +80,15 @@ public class PlayerStats : MonoBehaviour
             {
                 ConvostaionUI = UiSlot.gameObject;
             }
+            else if (UiSlot.gameObject.name == "Menu")
+            {
+                MenuUI = UiSlot.gameObject;
+                MenuUI.GetComponent<PlayTimeMenu>().player = this.gameObject;
+            }
             else
             {
                 UIScreens[UItempnumber] = UiSlot.gameObject;
                 UItempnumber++;
-
             }
         }
 
@@ -148,7 +159,7 @@ public class PlayerStats : MonoBehaviour
             AbleToMove = true;
         }
     }
-    public void MenuBTN(InputAction.CallbackContext context)
+    public void CharacterMenuBTN(InputAction.CallbackContext context)
     {
         if (!UIOpen)
         {
@@ -169,6 +180,11 @@ public class PlayerStats : MonoBehaviour
             AbleToMove = true;
         }
 
+    }
+    public void OpenMenu(InputAction.CallbackContext context)
+    {
+        MenuUI.SetActive(true);
+        AbleToMove = false;
     }
 
     public void Direction()

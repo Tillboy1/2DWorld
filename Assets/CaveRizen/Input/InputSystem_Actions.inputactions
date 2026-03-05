@@ -70,7 +70,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Menu",
+                    "name": "CharacterMenu",
                     "type": "Button",
                     "id": "cbadaa69-bc98-464e-b182-72cc38ad9989",
                     "expectedControlType": "",
@@ -82,6 +82,15 @@
                     "name": "Map",
                     "type": "Button",
                     "id": "7389cd86-223d-4eb4-a343-cb572986618c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GameMenu",
+                    "type": "Button",
+                    "id": "3b8a69aa-5ecf-4a20-86db-5c23605a9525",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -488,22 +497,22 @@
                 {
                     "name": "",
                     "id": "9248bd1b-ecc6-4da8-bd15-39fddfe44ec7",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse;Main",
-                    "action": "Menu",
+                    "action": "CharacterMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "c43701c2-124e-474d-bc98-166f2b34c02f",
-                    "path": "<Gamepad>/start",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad;Main",
-                    "action": "Menu",
+                    "action": "CharacterMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -526,6 +535,28 @@
                     "processors": "",
                     "groups": ";Gamepad;Main",
                     "action": "Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00007b8b-0aa7-4e9d-b3e2-7c27dcac6bbd",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Main;Keyboard&Mouse",
+                    "action": "GameMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6558f52c-3a14-49c3-88ee-1eea37394d8f",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Main;Gamepad",
+                    "action": "GameMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

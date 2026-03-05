@@ -16,4 +16,9 @@ public class NPCBase : InteractableBase
         // Looks towards the npc
         // Goes To talkingLocation
     }
+
+    public override void LeavingArea()
+    {
+        throw new System.NotImplementedException();
+    }
 }

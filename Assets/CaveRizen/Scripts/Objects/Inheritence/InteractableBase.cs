@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal;
 using UnityEngine;
 
 public abstract class InteractableBase : MonoBehaviour
@@ -37,11 +38,14 @@ public abstract class InteractableBase : MonoBehaviour
     {
         if (collision.GetComponent<PlayerMovement>())
         {
+            LeavingArea();
             playerInRange = false;
             Player = null;
             InteractIcon.SetActive(false);
         }
     }
+
+    public abstract void LeavingArea();
 
     public abstract void Interact();
 }
