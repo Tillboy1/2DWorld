@@ -39,6 +39,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en-GB
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71f225c50fe34084db5e952b2dfcb0df
+    m_Address: Main Screen_en-GB
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-GB
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 834190b4c8d029c499d266466710dd5f
     m_Address: Camera_TEXT_en-GB
     m_ReadOnly: 1
