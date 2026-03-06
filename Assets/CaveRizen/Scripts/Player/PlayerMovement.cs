@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.DrawRay(this.transform.position, Vector2.down * 1.0f, Color.red);
         
-        Jump();
+
         //DisplayPause();
     }
 
@@ -80,7 +80,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(this.gameObject.GetComponent<PlayerStats>().currentlyDead == false && this.gameObject.GetComponent<PlayerStats>().AbleToMove)
+        Jump();
+        if (this.gameObject.GetComponent<PlayerStats>().currentlyDead == false && this.gameObject.GetComponent<PlayerStats>().AbleToMove)
         {
             Walking();
         }

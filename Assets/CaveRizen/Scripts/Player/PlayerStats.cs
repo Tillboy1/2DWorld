@@ -53,8 +53,8 @@ public class PlayerStats : MonoBehaviour
     public bool IsResting;
 
     [Header("Shell")]
-    public bool CurrentShell;
-    public bool[] ShellsUnlocked;
+    public ShellDesigns CurrentShell;
+    public ShellDesigns[] ShellsUnlocked;
 
     private Vector2 m_moveAmt;
     private Rigidbody2D m_rigidbodyb;
@@ -100,6 +100,8 @@ public class PlayerStats : MonoBehaviour
             MaskUI[HealthHolder.transform.childCount] = masks.gameObject;
         }
         */
+
+        this.transform.position = lastRestLocation;
     }
 
     public void Start()

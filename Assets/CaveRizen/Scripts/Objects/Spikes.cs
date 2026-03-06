@@ -7,7 +7,6 @@ public class Spikes : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(" Entering hit");
         if(collision.GetComponent<PlayerStats>())
         {
             collision.GetComponent<PlayerStats>().TakeDamage(damage);
@@ -17,7 +16,5 @@ public class Spikes : MonoBehaviour
         {
             collision.GetComponent<Enemies>().TakeDamage(damage * 5);
         }
-
-
     }
 }
