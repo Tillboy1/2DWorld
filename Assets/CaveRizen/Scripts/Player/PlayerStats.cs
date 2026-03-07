@@ -10,6 +10,7 @@ using static UnityEditor.Progress;
 
 public class PlayerStats : MonoBehaviour
 {
+    public GameObject TestSpawnLocation;
     public Vector2 lastRestLocation;
 
     [Header("UI")]
@@ -101,7 +102,15 @@ public class PlayerStats : MonoBehaviour
         }
         */
 
-        this.transform.position = lastRestLocation;
+        TestSpawnLocation = GameObject.FindGameObjectWithTag("TestUsage");
+        if (TestSpawnLocation != null)
+        {
+            this.transform.position = TestSpawnLocation.transform.position;
+        }
+        else
+        {
+            this.transform.position = lastRestLocation;
+        }
     }
 
     public void Start()

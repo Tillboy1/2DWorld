@@ -27,7 +27,6 @@ public class Enemies : MonoBehaviour
     [TextArea(15, 20)]
     public string description;
 
-
     public int id;
     public Sprite EnemySprite;
 

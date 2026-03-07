@@ -232,9 +232,10 @@ MonoBehaviour:
   currentAreaName: 
   locationScreen: {fileID: 0}
   player: {fileID: 0}
+  Roomspace: {x: 0, y: 0}
   locationsSpace: {x: 0, y: 0}
   roomOfset: {x: 0, y: 0, z: 0}
-  CameraMoveSpeed: 3
+  CameraMoveSpeed: 4
   target: {x: 0, y: 0, z: 0}
   limmitNorth: 0
   limmitEast: 0
