@@ -17,7 +17,7 @@ public class PlayerStats : MonoBehaviour
     public GameObject UICanvas;
 
     public GameObject MenuUI;
-    public GameObject BaseLineUI;
+    private GameObject BaseLineUI;
     public GameObject LocationUi;
     public GameObject ConvostaionUI;
     public GameObject[] UIScreens;

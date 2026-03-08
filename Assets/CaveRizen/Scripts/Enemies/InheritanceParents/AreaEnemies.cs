@@ -6,8 +6,6 @@ public class AreaEnemies : Enemies
     public GameObject[] Waypoints;
 
     public int nextWaypoint = 0;
-    public float distToPoint;
-    public float speed;
 
     [Header("Drops")]
     public ItemObject[] Items;

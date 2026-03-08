@@ -4,38 +4,19 @@ using UnityEngine;
 
 public class BossEnemies : Enemies
 {
-    public List<GameObject> Players;
     public int[] Healthbars;
 
-    [Header("Movement")]
-    public GameObject TargetGO;
-    public float distToPoint;
-    public float speed;
+    [Header("Room")]
+    public GameObject BossRoom;
 
     public void FixedUpdate()
     {
         Move();
     }
 
-    public void ClosesestPlayer()
-    {
-        float TempPlayerDistances = 0;
-        for (int i = 0; i < Players.Count; i++)
-        {
-            TempPlayerDistances = Vector2.Distance(transform.position, Players[i].transform.position);
-            if(TempPlayerDistances < distToPoint)
-            {
-                distToPoint = TempPlayerDistances;
-                TargetGO = Players[i];
-            }
-            if (TempPlayerDistances == distToPoint)
-            {
-                Debug.Log("Same");
-            }
-        }
-    }
     public virtual void Move()
     {
+        ClosesestPlayer();
         distToPoint = Vector2.Distance(transform.position, TargetGO.transform.position);
 
         transform.position = Vector2.MoveTowards(transform.position, TargetGO.transform.position, speed * Time.deltaTime);
@@ -57,12 +38,13 @@ public class BossEnemies : Enemies
                 if (Healthbars[i] >= 1)
                 {
                     currentHealth = Healthbars[i];
-                    this.GetComponent<SpriteRenderer>().color = new Color(1, 0, 1);
+                    this.GetComponent<SpriteRenderer>().color = new Color(.5f, 0, .5f);
                     Healthbars[i] = 0;
                     break;
                 }
                 else
                 {
+                    BossRoom.GetComponent<BossRoom>().RoomCompleate();
                     Die();
                 }
             }

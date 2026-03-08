@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum AttackDirection
@@ -45,6 +46,42 @@ public class Enemies : MonoBehaviour
 
     public AttacksSlots[] attacksPossible;
 
+    [Header("Movement")]
+    public GameObject TargetGO;
+    public List<GameObject> Players;
+    public float distToPoint;
+    public float speed;
+
+
+    public void ClosesestPlayer()
+    {
+        float TempPlayerDistances = 1000000000;
+        if (Players.Count > 0)
+        {
+            Debug.Log("player 1");
+            distToPoint = Vector2.Distance(transform.position, Players[0].transform.position);
+            TargetGO = Players[0];
+        }
+        else
+        {
+            Debug.Log("player more");
+            distToPoint = Vector2.Distance(transform.position, Players[0].transform.position);
+            TargetGO = Players[0];
+            for (int i = 0; i < Players.Count; i++)
+            {
+                TempPlayerDistances = Vector2.Distance(transform.position, Players[i].transform.position);
+                if (TempPlayerDistances < distToPoint)
+                {
+                    distToPoint = TempPlayerDistances;
+                    TargetGO = Players[i];
+                }
+                if (TempPlayerDistances == distToPoint)
+                {
+                    Debug.Log("Same");
+                }
+            }
+        }
+    }
     public virtual void TakeDamage(int Damage)
     {
         if (currentHealth - Damage <= 0)
