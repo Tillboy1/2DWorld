@@ -28,8 +28,11 @@ public class PlayerMovement : MonoBehaviour
     public float jumpPower = 5;
     public float jumpTimeHoldable;
 
-    public GameObject PauseDisplay;
-
+    [Header("Climbing")]
+    public bool UnlockedClimbing;
+    public bool isClimbing;
+    public float ClimbSpeed;
+    public bool StillClimbing = false;
 
     private void Awake()
     {
@@ -44,9 +47,6 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Debug.DrawRay(this.transform.position, Vector2.down * 1.0f, Color.red);
-        
-
-        //DisplayPause();
     }
 
     public void Jump()
@@ -57,6 +57,11 @@ public class PlayerMovement : MonoBehaviour
             // if is the jump button held
             if (isjumpHeld)
             {
+                //if (isClimbing)
+                //{
+                //    isClimbing = false;
+                //}
+
                 // and if the player is on ground
                 if (isOnGround)
                 {
@@ -81,15 +86,28 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Jump();
-        if (this.gameObject.GetComponent<PlayerStats>().currentlyDead == false && this.gameObject.GetComponent<PlayerStats>().AbleToMove)
+        if (this.gameObject.GetComponent<PlayerStats>().currentlyDead == false && this.gameObject.GetComponent<PlayerStats>().AbleToMove && !isClimbing)
         {
             Walking();
+        }
+        else if (this.gameObject.GetComponent<PlayerStats>().currentlyDead == false && this.gameObject.GetComponent<PlayerStats>().AbleToMove && isClimbing)
+        {
+            Climbing();
         }
     }
 
     public void MoveInput(InputAction.CallbackContext context)
     {
         m_moveAmt = context.ReadValue<Vector2>();
+
+        if (context.started && isClimbing)
+        {
+
+        }
+        if(context.performed && isClimbing)
+        {
+
+        }
     }
 
     public void JumpInput(InputAction.CallbackContext context)
@@ -108,6 +126,44 @@ public class PlayerMovement : MonoBehaviour
     public void Walking()
     {
         rb.position = new Vector2(rb.position.x + (m_moveAmt.x * moveSpeed), rb.position.y);
+    }
+    public void Climbing()
+    {
+        Debug.Log("Climbing");
+
+        if (isjumpHeld)
+        {
+            Debug.Log("Letting Go");
+
+            isClimbing = false;
+            StillClimbing = false;
+        }
+
+        isOnGround = Groundcheck(1f);
+        if (isOnGround && m_moveAmt.y != 0)
+        {
+            Debug.Log("Start Climbing");
+            rb.position = new Vector2(rb.position.x, rb.position.y + (m_moveAmt.y * ClimbSpeed));
+            StillClimbing = true;
+        }
+        else if (StillClimbing && m_moveAmt.y != 0)
+        {
+            Debug.Log("Continue Climbing");
+
+            rb.position = new Vector2(rb.position.x, rb.position.y + (m_moveAmt.y * ClimbSpeed));
+            if (isjumpHeld && 0 != m_moveAmt.x)
+            {
+                isClimbing = false;
+                StillClimbing = false;
+            }
+        }
+        else if (isOnGround && 0 != m_moveAmt.x)
+        {
+            Debug.Log("Walked Away");
+
+            isClimbing = false;
+            StillClimbing = false;
+        }
     }
 
     public bool Groundcheck(float Length)
