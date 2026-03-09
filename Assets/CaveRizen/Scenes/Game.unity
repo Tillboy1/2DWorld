@@ -39183,7 +39183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4257146805864361599, guid: 07004e46925c7884d9e2706720d02d64, type: 3}
       propertyPath: Direct
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4257146805864361599, guid: 07004e46925c7884d9e2706720d02d64, type: 3}
       propertyPath: LocationToGo.x
@@ -49917,6 +49917,10 @@ PrefabInstance:
     - target: {fileID: 1633341796515278467, guid: 07004e46925c7884d9e2706720d02d64, type: 3}
       propertyPath: m_Name
       value: Doorway
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257146805864361599, guid: 07004e46925c7884d9e2706720d02d64, type: 3}
+      propertyPath: Direct
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4257146805864361599, guid: 07004e46925c7884d9e2706720d02d64, type: 3}
       propertyPath: LocationToGo.x
@@ -63661,10 +63665,6 @@ PrefabInstance:
     - target: {fileID: 7202055680181171464, guid: c430d8d6be9802b4d92936939c4b8332, type: 3}
       propertyPath: m_Name
       value: Enemy Floor Crawler
-      objectReference: {fileID: 0}
-    - target: {fileID: 7411195223979999208, guid: c430d8d6be9802b4d92936939c4b8332, type: 3}
-      propertyPath: Items.Array.size
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7411195223979999208, guid: c430d8d6be9802b4d92936939c4b8332, type: 3}
       propertyPath: 'Waypoints.Array.data[0]'

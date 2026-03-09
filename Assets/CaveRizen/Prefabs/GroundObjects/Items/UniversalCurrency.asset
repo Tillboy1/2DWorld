@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   uiDisplay: {fileID: 0}
-  ObjectModel: {fileID: 0}
+  ObjectModel: {fileID: 6103594233329076132, guid: 1116676e87d54b24a9f8f9aa91d3635b, type: 3}
   Name: 
   Description: 
-  IsCurrency: 0
+  IsCurrency: 1
