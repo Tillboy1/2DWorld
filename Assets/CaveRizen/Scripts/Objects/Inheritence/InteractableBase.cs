@@ -8,7 +8,7 @@ public abstract class InteractableBase : MonoBehaviour
     public bool playerInRange;
     public bool hitToInteract;
 
-    public void Awake()
+    private void Awake()
     {
         InteractIcon = this.transform.GetChild(0).gameObject;
         InteractIcon.SetActive(false);
@@ -16,7 +16,7 @@ public abstract class InteractableBase : MonoBehaviour
 
     public void Update()
     {
-        if (playerInRange && Player.GetComponent<PlayerStats>().interacting)
+        if (playerInRange && Player.GetComponent<PlayerStats>().interacting && !hitToInteract)
         {
             Debug.Log("interacting");
             Interact();

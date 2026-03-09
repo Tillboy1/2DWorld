@@ -59,6 +59,8 @@ public class PlayerStats : MonoBehaviour
     public float focusAmount;
     public float MaxFocus = 100;
     public int focusOnHit = 10;
+
+    public float FocusTaken = 70;
     public int HealingAmount;
     public bool AbilityReady = false;
 
@@ -275,7 +277,7 @@ public class PlayerStats : MonoBehaviour
                         focusAmount += focusOnHit;
                     }
 
-                    if (focusAmount >= 70)
+                    if (focusAmount >= FocusTaken)
                     {
                         AbilityReady = true;
                     }
@@ -291,6 +293,15 @@ public class PlayerStats : MonoBehaviour
                 if (AbleToAttack)
                 {
                     attackAreaObject[i].transform.GetComponent<BreakableWall>().TakeDamage();
+                    AbleToAttack = false;
+                    StartCoroutine(WaitAttack());
+                }
+            }
+            else if (attackAreaObject[i].transform.GetComponent<InteractableBase>())
+            {
+                if (AbleToAttack && attackAreaObject[i].transform.GetComponent<InteractableBase>().hitToInteract)
+                {
+                    attackAreaObject[i].transform.GetComponent<InteractableBase>().Interact();
                     AbleToAttack = false;
                     StartCoroutine(WaitAttack());
                 }
@@ -320,6 +331,39 @@ public class PlayerStats : MonoBehaviour
             Die();
         }
     }
+    public void Bind(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log("started");
+        }
+        if (context.performed)
+        {
+            Debug.Log("Held");
+
+            if (AbilityReady)
+            {
+                if (CurrentHealth + HealingAmount >= maxHealth)
+                {
+                    CurrentHealth = maxHealth;
+                }
+                else
+                {
+                    CurrentHealth += maxHealth;
+                }
+
+                focusAmount -= FocusTaken;
+
+                statsUI.LoadMasks();
+                statsUI.LoadFocus();
+            }
+            else
+            {
+                Debug.Log("Not Enough Focus");
+            }
+        }
+    }
+
 
     public void PickUpItem(GameObject objectToPickUp)
     {

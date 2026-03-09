@@ -70,6 +70,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Bind",
+                    "type": "Button",
+                    "id": "e5a43d8c-a8fb-45f2-a683-b59009be107b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold(duration=2.5)",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "CharacterMenu",
                     "type": "Button",
                     "id": "cbadaa69-bc98-464e-b182-72cc38ad9989",
@@ -557,6 +566,28 @@
                     "processors": "",
                     "groups": ";Main;Gamepad",
                     "action": "GameMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2c30b86-607a-49f6-a259-5be59356087c",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Main",
+                    "action": "Bind",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27aecefd-9387-43cb-8205-3803e0026c96",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Main;Gamepad",
+                    "action": "Bind",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
