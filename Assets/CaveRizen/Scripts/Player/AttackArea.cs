@@ -6,11 +6,10 @@ public class AttackArea : MonoBehaviour
     public List<GameObject> Attackobject;
     public GameObject AttackShow;
 
-    private void Start()
+    private void Awake()
     {
         AttackShow = transform.GetChild(0).gameObject;
     }
-
     public void OnTriggerEnter2D(Collider2D collision)
     {
         Attackobject.Add(collision.gameObject);

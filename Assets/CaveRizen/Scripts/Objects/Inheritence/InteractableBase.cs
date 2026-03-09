@@ -10,7 +10,7 @@ public abstract class InteractableBase : MonoBehaviour
 
     private void Awake()
     {
-        if (this.transform.childCount >= 0)
+        if (this.transform.childCount != 0)
         {
             InteractIcon = this.transform.GetChild(0).gameObject;
             InteractIcon.SetActive(false);
@@ -33,7 +33,8 @@ public abstract class InteractableBase : MonoBehaviour
         {
             playerInRange = true;
             Player = collision.gameObject;
-            InteractIcon.SetActive(true);
+            if(InteractIcon != null)
+                InteractIcon.SetActive(true);
         }
     }
 
@@ -44,7 +45,8 @@ public abstract class InteractableBase : MonoBehaviour
             LeavingArea();
             playerInRange = false;
             Player = null;
-            InteractIcon.SetActive(false);
+            if (InteractIcon != null)
+                InteractIcon.SetActive(false);
         }
     }
 
