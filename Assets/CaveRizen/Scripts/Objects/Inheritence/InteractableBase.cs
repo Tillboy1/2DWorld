@@ -10,8 +10,11 @@ public abstract class InteractableBase : MonoBehaviour
 
     private void Awake()
     {
-        InteractIcon = this.transform.GetChild(0).gameObject;
-        InteractIcon.SetActive(false);
+        if (this.transform.childCount >= 0)
+        {
+            InteractIcon = this.transform.GetChild(0).gameObject;
+            InteractIcon.SetActive(false);
+        }
     }
 
     public void Update()

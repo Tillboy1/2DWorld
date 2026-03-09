@@ -46,7 +46,7 @@ public class PlayerStats : MonoBehaviour
     [Header("Combat")]
     public StatsUI statsUI;
 
-    public GameObject attackArea;
+    public AttackArea attackArea;
     public float attackOfSet;
     public int damage;
     private bool AbleToAttack = true;
@@ -316,6 +316,8 @@ public class PlayerStats : MonoBehaviour
                 }
             }
         }
+
+        StartCoroutine(AttackAn());
     }
     public void TakeDamage(float damage)
     {
@@ -502,5 +504,11 @@ public class PlayerStats : MonoBehaviour
 
         this.GetComponent<SpriteRenderer>().color = Color.white;
         statsUI.LoadMasks();
+    }
+    IEnumerator AttackAn()
+    {
+        attackArea.AttackShow.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        attackArea.AttackShow.SetActive(false);
     }
 }

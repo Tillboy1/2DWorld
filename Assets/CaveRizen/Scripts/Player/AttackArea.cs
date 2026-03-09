@@ -4,6 +4,12 @@ using UnityEngine;
 public class AttackArea : MonoBehaviour
 {
     public List<GameObject> Attackobject;
+    public GameObject AttackShow;
+
+    private void Start()
+    {
+        AttackShow = transform.GetChild(0).gameObject;
+    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {

@@ -58,7 +58,6 @@ public class Enemies : MonoBehaviour
         float TempPlayerDistances = 1000000000;
         if (Players.Count > 0)
         {
-            Debug.Log("player 1");
             distToPoint = Vector2.Distance(transform.position, Players[0].transform.position);
             TargetGO = Players[0];
         }

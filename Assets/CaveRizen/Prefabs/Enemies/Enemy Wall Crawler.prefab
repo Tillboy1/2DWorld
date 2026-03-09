@@ -163,14 +163,12 @@ MonoBehaviour:
     AttackRange: 0
     attackDamageMin: 1
     attackDamageMax: 1
-  Waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  nextWaypoint: 0
+  TargetGO: {fileID: 0}
+  Players: []
   distToPoint: 0
   speed: 3
+  Waypoints: []
+  nextWaypoint: 0
   Items: []
   amountToDropLow: 0
   amountToDropHigh: 0
