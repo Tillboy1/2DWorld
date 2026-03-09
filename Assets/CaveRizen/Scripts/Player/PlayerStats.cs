@@ -1,4 +1,5 @@
 using Newtonsoft.Json.Bson;
+using NUnit.Framework.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -25,11 +26,10 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Health")]
     public GameObject StatsUI;
-    public GameObject HealthHolder;
-    public GameObject[] MaskUI = new GameObject[15];
 
     public float CurrentHealth;
-    public float TotalHealth;
+    public float maxHealth;
+    public int tempHealth;
 
     public bool interacting;
     private bool ableToInteract = true;
@@ -44,14 +44,23 @@ public class PlayerStats : MonoBehaviour
     public int localCurrencyMax;
 
     [Header("Combat")]
+    public StatsUI statsUI;
+
     public GameObject attackArea;
     public float attackOfSet;
-    public int Damage;
+    public int damage;
     private bool AbleToAttack = true;
 
     public bool AbleToMove = true;
     public bool currentlyDead = false;
     public bool IsResting;
+
+    [Header("Focus")]
+    public float focusAmount;
+    public float MaxFocus = 100;
+    public int focusOnHit = 10;
+    public int HealingAmount;
+    public bool AbilityReady = false;
 
     [Header("Shell")]
     public ShellDesigns CurrentShell;
@@ -68,6 +77,10 @@ public class PlayerStats : MonoBehaviour
             if (UiSlot.gameObject.name == "Baseline")
             {
                 BaseLineUI = UiSlot.gameObject;
+            }
+            else if (UiSlot.gameObject.name == "Basic Stats")
+            {
+                statsUI = UiSlot.gameObject.GetComponent<StatsUI>();
             }
             else if (UiSlot.gameObject.name == "Location UI")
             {
@@ -115,25 +128,23 @@ public class PlayerStats : MonoBehaviour
 
     public void Start()
     {
-        CurrentHealth = TotalHealth;
-        /*
+        CurrentHealth = maxHealth;
+    }
 
-    for (int i = 0; i < HealthHolder.transform.childCount; i++)
+    public void Focus(InputAction.CallbackContext context)
     {
-        Debug.Log(i + " vs " + HealthHolder.transform.childCount);
-
-        if (i < HealthHolder.transform.childCount && i > TotalHealth)
+        if(focusAmount >= 75)
         {
-            MaskUI[i].gameObject.SetActive(false);
-        }
-        else
-        {
-            MaskUI[i].gameObject.SetActive(true);
+            if(CurrentHealth + HealingAmount > maxHealth)
+            {
+                CurrentHealth = maxHealth;
+            }
+            else
+            {
+                CurrentHealth += HealingAmount;
+            }
         }
     }
-        */
-    }
-
     public void Interact(InputAction.CallbackContext context)
     {
         if (ableToInteract == true)
@@ -252,7 +263,25 @@ public class PlayerStats : MonoBehaviour
             {
                 if (AbleToAttack)
                 {
-                    attackAreaObject[i].transform.GetComponent<Enemies>().TakeDamage(Damage);
+                    attackAreaObject[i].transform.GetComponent<Enemies>().TakeDamage(damage);
+
+                    // Soul Focus
+                    if(focusAmount + focusOnHit >= MaxFocus)
+                    {
+                        focusAmount = MaxFocus;
+                    }
+                    else
+                    {
+                        focusAmount += focusOnHit;
+                    }
+
+                    if (focusAmount >= 70)
+                    {
+                        AbilityReady = true;
+                    }
+                    statsUI.LoadFocus();
+
+                    //Reset Attacks
                     AbleToAttack = false;
                     StartCoroutine(WaitAttack());
                 }
@@ -282,9 +311,12 @@ public class PlayerStats : MonoBehaviour
         if (CurrentHealth - damage > 0)
         {
             CurrentHealth -= damage;
+            statsUI.LoadMasks();
         }
         else
         {
+            CurrentHealth = 0;
+            statsUI.LoadMasks();
             Die();
         }
     }
@@ -421,9 +453,10 @@ public class PlayerStats : MonoBehaviour
 
         currentlyDead = false;
 
-        CurrentHealth = TotalHealth;
+        CurrentHealth = maxHealth;
         this.transform.position = lastRestLocation;
 
         this.GetComponent<SpriteRenderer>().color = Color.white;
+        statsUI.LoadMasks();
     }
 }

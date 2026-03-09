@@ -31,6 +31,11 @@ public class AreaEnemies : Enemies
         }
     }
 
+    public override void Die()
+    {
+        DropItems();
+        base.Die();
+    }
 
     public virtual void ChooseNextWaypoint()
     {
@@ -48,6 +53,9 @@ public class AreaEnemies : Enemies
     }
     public virtual void DropItems()
     {
+        if (amountToDropLow > amountToDropHigh)
+            amountToDropHigh = amountToDropLow;
+
         int amountDroped = Random.Range(amountToDropLow, amountToDropHigh);
 
         for (int i = 0; i < amountDroped; i++)
@@ -58,7 +66,7 @@ public class AreaEnemies : Enemies
             float DropAreaLength = Random.Range(-25, 25);
 
             // creates the items to drop
-            var GO = Instantiate(Items[ItemToDrop].ObjectModel, this.transform.parent);
+            var GO = Instantiate(Items[ItemToDrop].ObjectModel, this.transform.position, new Quaternion(0, 0, 0, 1), this.transform.parent.transform);
             GO.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(DropAreaLength, DropAreaHight), this.transform.position);
         }
     }

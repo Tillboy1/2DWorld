@@ -99,8 +99,6 @@ public class Enemies : MonoBehaviour
     {
         this.gameObject.SetActive(false);
     }
-
-
 }
 public class Attacklist
 {

@@ -21,6 +21,7 @@ public class BreakableWall : MonoBehaviour
             Destroy(NextRoomBreakable);
         }
         Destroy(this.gameObject);
+
         if (Doorways[0] != null)
         {
             Doorways[0].SetActive(true);

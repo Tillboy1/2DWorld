@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f9bb75db4d40944fb850ef45ad754b6, type: 3}
-  m_Name: Database
+  m_Script: {fileID: 11500000, guid: 7dcc6fd93754ed54fa8dd6e202a63064, type: 3}
+  m_Name: UniversalCurrency
   m_EditorClassIdentifier: 
-  Items:
-  - {fileID: 11400000, guid: 03a6650f2645b72489b1b76f72662a5c, type: 2}
-  - {fileID: 11400000, guid: 7ed55f0dd96db424a9922998c0062b65, type: 2}
+  Id: 0
+  uiDisplay: {fileID: 0}
+  ObjectModel: {fileID: 0}
+  Name: 
+  Description: 
+  IsCurrency: 0

@@ -99,15 +99,6 @@ public class PlayerMovement : MonoBehaviour
     public void MoveInput(InputAction.CallbackContext context)
     {
         m_moveAmt = context.ReadValue<Vector2>();
-
-        if (context.started && isClimbing)
-        {
-
-        }
-        if(context.performed && isClimbing)
-        {
-
-        }
     }
 
     public void JumpInput(InputAction.CallbackContext context)
