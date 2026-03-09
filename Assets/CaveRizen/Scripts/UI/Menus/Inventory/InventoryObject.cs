@@ -5,7 +5,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEditor;
 using System.Runtime.Serialization;
-using static UnityEditor.Progress;
 
 [CreateAssetMenu(fileName = "InventoryObject", menuName = "Scriptable Objects/InventoryObject")]
 public class InventoryObject : ScriptableObject
