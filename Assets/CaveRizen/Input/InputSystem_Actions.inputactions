@@ -374,7 +374,7 @@
                 {
                     "name": "",
                     "id": "c733ea01-afba-41f3-bcd9-d92c6e869293",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button5",
+                    "path": "<Joystick>/trigger",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Main;Arcade",
@@ -454,7 +454,7 @@
                     "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button4",
                     "interactions": "Hold",
                     "processors": "",
-                    "groups": ";Main;Arcade",
+                    "groups": ";Arcade",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -477,6 +477,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad;Main",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2981c718-a46f-48b1-9e86-1086f64c54a8",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Arcade",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -521,6 +532,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad;Main",
+                    "action": "CharacterMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "320c8107-0341-469d-b805-38ee64f7f837",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Arcade",
                     "action": "CharacterMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -587,6 +609,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Main;Gamepad",
+                    "action": "Bind",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47ea2230-d6c2-43dc-94b9-98326d2e0190",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Arcade",
                     "action": "Bind",
                     "isComposite": false,
                     "isPartOfComposite": false
