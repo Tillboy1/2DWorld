@@ -19,7 +19,10 @@ public class RestLocation : InteractableBase
     {
         Debug.Log("Rest");
         Player.GetComponent<PlayerStats>().IsResting = true;
+        Player.GetComponent<PlayerStats>().CurrentHealth = Player.GetComponent<PlayerStats>().maxHealth;
+        Player.GetComponent<PlayerStats>().statsUI.LoadFocus();
 
+        // Respawning Mechanic
         foreach (Transform Object in Areas.transform)
         {
             foreach (Transform RoomsObjs in Object)

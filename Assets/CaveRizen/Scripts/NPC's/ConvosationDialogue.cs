@@ -1,5 +1,3 @@
-using Mono.Cecil;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ConvosationDialogue", menuName = "Scriptable Objects/ConvosationDialogue")]

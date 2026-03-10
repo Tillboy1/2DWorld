@@ -1,13 +1,7 @@
-using Newtonsoft.Json.Bson;
-using NUnit.Framework.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
-using UnityEngine.Device;
 using UnityEngine.InputSystem;
-using static UnityEditor.Progress;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -29,7 +23,7 @@ public class PlayerStats : MonoBehaviour
 
     public float CurrentHealth;
     public float maxHealth;
-    public int tempHealth;
+    public float tempHealth = 0;
 
     public bool interacting;
     private bool ableToInteract = true;
@@ -321,6 +315,12 @@ public class PlayerStats : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
+        if (tempHealth > 0)
+        {
+            //tempHealth -= damage;
+            //damage = damage - tempHealth;
+            Debug.Log("Temp Health needs work");
+        }
         if (CurrentHealth - damage > 0)
         {
             CurrentHealth -= damage;
