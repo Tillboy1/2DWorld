@@ -6,7 +6,6 @@ using UnityEngine;
 public class FlowCamera : MonoBehaviour
 {
     public string currentAreaName;
-    public GameObject locationScreen = null;
     public Camera cam => this.GetComponentInChildren<Camera>();
 
     public GameObject player;
@@ -129,22 +128,6 @@ public class FlowCamera : MonoBehaviour
     {
         currentAreaName = area;
 
-        locationScreen = player.GetComponent<PlayerStats>().LocationUi;
-
-        locationScreen.GetComponentInChildren<TMP_Text>().text = area;
-
-        StartCoroutine(AreaScreen());
-
-        locationScreen.SetActive(true);
-        // Set the locationScreen
+        PlayerManager.instance.EnteringNewArea(currentAreaName);
     } 
-
-    IEnumerator AreaScreen()
-    {
-        yield return new WaitForSeconds(.2f);
-        locationScreen.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
-
-        locationScreen.SetActive(false);
-    }
 }

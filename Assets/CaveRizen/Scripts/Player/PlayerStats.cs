@@ -9,18 +9,9 @@ public class PlayerStats : MonoBehaviour
     public Vector2 lastRestLocation;
 
     [Header("UI")]
-    public GameObject UICanvas;
-
-    public GameObject MenuUI;
-    private GameObject BaseLineUI;
-    public GameObject LocationUi;
-    public GameObject ConvostaionUI;
-    public GameObject[] UIScreens;
     public bool UIOpen;
 
     [Header("Health")]
-    public GameObject StatsUI;
-
     public float CurrentHealth;
     public float maxHealth;
     public float tempHealth = 0;
@@ -38,8 +29,6 @@ public class PlayerStats : MonoBehaviour
     public int localCurrencyMax;
 
     [Header("Combat")]
-    public StatsUI statsUI;
-
     public AttackArea attackArea;
     public float attackOfSet;
     public int damage;
@@ -67,41 +56,6 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        int UItempnumber = 0;
-        foreach (Transform UiSlot in UICanvas.transform)
-        {
-            if (UiSlot.gameObject.name == "Baseline")
-            {
-                BaseLineUI = UiSlot.gameObject;
-            }
-            else if (UiSlot.gameObject.name == "Basic Stats")
-            {
-                statsUI = UiSlot.gameObject.GetComponent<StatsUI>();
-            }
-            else if (UiSlot.gameObject.name == "Location UI")
-            {
-                LocationUi = UiSlot.gameObject;
-            }
-            else if (UiSlot.gameObject.name == "Basic Stats")
-            {
-                StatsUI = UiSlot.gameObject;
-            }
-            else if (UiSlot.gameObject.name == "Convosation UI")
-            {
-                ConvostaionUI = UiSlot.gameObject;
-            }
-            else if (UiSlot.gameObject.name == "Menu")
-            {
-                MenuUI = UiSlot.gameObject;
-                MenuUI.GetComponent<PlayTimeMenu>().player = this.gameObject;
-            }
-            else
-            {
-                UIScreens[UItempnumber] = UiSlot.gameObject;
-                UItempnumber++;
-            }
-        }
-
         m_rigidbodyb = GetComponent<Rigidbody2D>();
         //HealthHolder = StatsUI.transform.GetChild(0).GetChild(1).gameObject;
         /*
@@ -161,19 +115,13 @@ public class PlayerStats : MonoBehaviour
         if (!UIOpen)
         {
             UIOpen = true;
-            BaseLineUI.SetActive(true);
-            UIScreens[3].gameObject.SetActive(true);
-
+            PlayerManager.instance.Map();
             AbleToMove = false;
         }
         else
         {
             UIOpen = false;
-            BaseLineUI.SetActive(false);
-            for (int i = 0; i < UIScreens.Length; i++)
-            {
-                UIScreens[i].gameObject.SetActive(false);
-            }
+            PlayerManager.instance.CloseUI();
             AbleToMove = true;
         }
     }
@@ -182,26 +130,20 @@ public class PlayerStats : MonoBehaviour
         if (!UIOpen)
         {
             UIOpen = true;
-            BaseLineUI.SetActive(true);
-            UIScreens[0].gameObject.SetActive(true);
-
+            PlayerManager.instance.CharacterMenu();
             AbleToMove = false;
         }
         else
         {
             UIOpen = false;
-            BaseLineUI.SetActive(false);
-            for (int i = 0; i < UIScreens.Length; i++)
-            {
-                UIScreens[i].gameObject.SetActive(false);
-            }
+            PlayerManager.instance.CloseUI();
             AbleToMove = true;
         }
 
     }
     public void OpenMenu(InputAction.CallbackContext context)
     {
-        MenuUI.SetActive(true);
+        PlayerManager.instance.Menu(this.gameObject);
         AbleToMove = false;
     }
 
@@ -275,7 +217,7 @@ public class PlayerStats : MonoBehaviour
                     {
                         AbilityReady = true;
                     }
-                    statsUI.LoadFocus();
+                    PlayerManager.instance.LoadFocus();
 
                     //Reset Attacks
                     AbleToAttack = false;
@@ -324,12 +266,12 @@ public class PlayerStats : MonoBehaviour
         if (CurrentHealth - damage > 0)
         {
             CurrentHealth -= damage;
-            statsUI.LoadMasks();
+            PlayerManager.instance.LoadMasks();
         }
         else
         {
             CurrentHealth = 0;
-            statsUI.LoadMasks();
+            PlayerManager.instance.LoadMasks();
             Die();
         }
     }
@@ -356,8 +298,8 @@ public class PlayerStats : MonoBehaviour
 
                 focusAmount -= FocusTaken;
 
-                statsUI.LoadMasks();
-                statsUI.LoadFocus();
+                PlayerManager.instance.LoadMasks();
+                PlayerManager.instance.LoadFocus();
             }
             else
             {
@@ -503,7 +445,7 @@ public class PlayerStats : MonoBehaviour
         this.transform.position = lastRestLocation;
 
         this.GetComponent<SpriteRenderer>().color = Color.white;
-        statsUI.LoadMasks();
+        PlayerManager.instance.LoadMasks();
     }
     IEnumerator AttackAn()
     {

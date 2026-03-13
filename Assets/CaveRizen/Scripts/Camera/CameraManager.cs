@@ -11,7 +11,7 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField]
     float splitDistance = 5f;
-    bool isCameraSplit;
+    public bool isCameraSplit;
     bool isLeftScreenDiffRooms;
 
     public void Awake()
@@ -86,6 +86,8 @@ public class CameraManager : MonoBehaviour
         isLeftScreenDiffRooms = PlayerZeroOnLeft;
         isCameraSplit = true;
 
+        PlayerManager.instance.CheckUIRequired();
+
         for (int i = 0; i < allPlayers.Count; i++)
         {
             if(PlayerZeroOnLeft)
@@ -120,6 +122,9 @@ public class CameraManager : MonoBehaviour
     public void MergeCameras()
     {
         isCameraSplit = false;
+
+        PlayerManager.instance.CheckUIRequired();
+
         for (int i = 0; i < allPlayers.Count; i++)
         {
 

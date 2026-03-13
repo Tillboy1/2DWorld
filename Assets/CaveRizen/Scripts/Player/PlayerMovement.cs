@@ -39,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
 
         CurrentCamera = Instantiate(PrefabCamera, this.GetComponent<PlayerStats>().lastRestLocation, new Quaternion(0, 0, 0, 0));
         CurrentCamera.player = this.gameObject;
-        CurrentCamera.locationScreen = this.GetComponent<PlayerStats>().LocationUi;
         //this.GetComponent<PlayerStats>().UICanvas.GetComponent<Canvas>().worldCamera = CurrentCamera.transform.GetChild(0).GetComponent<Camera>();
     }
     private void Update()
