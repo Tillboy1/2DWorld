@@ -91455,6 +91455,14 @@ PrefabInstance:
       propertyPath: 'Waypoints.Array.data[1]'
       value: 
       objectReference: {fileID: 1835767164}
+    - target: {fileID: 7411195223979999208, guid: c430d8d6be9802b4d92936939c4b8332, type: 3}
+      propertyPath: attacksPossible.Array.data[0].attackDamageMax
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411195223979999208, guid: c430d8d6be9802b4d92936939c4b8332, type: 3}
+      propertyPath: attacksPossible.Array.data[0].attackDamageMin
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

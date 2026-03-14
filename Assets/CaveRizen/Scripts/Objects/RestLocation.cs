@@ -4,9 +4,9 @@ public class RestLocation : InteractableBase
 {
     public GameObject Areas;
 
-    public override void LeavingArea()
+    public override void LeavingArea(GameObject PlayerLeaving)
     {
-        Player.GetComponent<PlayerStats>().IsResting = false;
+        PlayerLeaving.GetComponent<PlayerStats>().IsResting = false;
     }
 
     public override void Interact()

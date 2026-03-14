@@ -93,6 +93,8 @@ public class PlayerStats : MonoBehaviour
             {
                 CurrentHealth += HealingAmount;
             }
+            PlayerManager.instance.LoadMasks();
+            PlayerManager.instance.LoadFocus();
         }
     }
     public void Interact(InputAction.CallbackContext context)
@@ -257,12 +259,34 @@ public class PlayerStats : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
+        Debug.Log("Take Damage");
         if (tempHealth > 0)
         {
-            //tempHealth -= damage;
-            //damage = damage - tempHealth;
-            Debug.Log("Temp Health needs work");
+            if(tempHealth - damage < 0)
+            {
+                Debug.Log("spillover");
+                float tempint = damage - tempHealth;
+
+                tempHealth = 0;
+                Debug.Log(damage + " = " + tempint);
+                damage = tempint;
+            }
+            else if(tempHealth - damage == 0)
+            {
+                tempHealth = 0;
+                damage = 0;
+            }
+            else
+            {
+                Debug.Log("tempHealth Damage");
+
+                float tempint = tempHealth - damage;
+
+                tempHealth -= tempint;
+                damage = 0;
+            }
         }
+
         if (CurrentHealth - damage > 0)
         {
             CurrentHealth -= damage;

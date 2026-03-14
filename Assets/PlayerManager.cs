@@ -70,8 +70,6 @@ public class PlayerManager : MonoBehaviour
         int UItempnumber = 0;
         foreach (Transform UiSlot in UICanvas.transform)
         {
-            Debug.Log(UiSlot.gameObject.name);
-
             if (UiSlot.gameObject.name == "Location UI")
             {
                 LocationUi = UiSlot.gameObject;
@@ -90,7 +88,6 @@ public class PlayerManager : MonoBehaviour
             }
             else if (UiSlot.gameObject.name != "Basic Stats" && UiSlot.gameObject.name != "Multiplayer")
             {
-                Debug.Log(UiSlot.gameObject.name);
                 UIScreens[UItempnumber] = UiSlot.gameObject;
                 UItempnumber++;
             }
@@ -199,7 +196,7 @@ public class PlayerManager : MonoBehaviour
                 for (int p = 0; p < allPlayers[0].GetComponent<PlayerStats>().maxHealth; p++)
                 {
                     var CurrentMask = Instantiate(MaskPrefabs, MaskAreaSinglePlayer.transform);
-                    if (allPlayers[0].GetComponent<PlayerStats>().maxHealth > p)
+                    if (allPlayers[0].GetComponent<PlayerStats>().CurrentHealth > p)
                     {
                         CurrentMask.GetComponent<Image>().sprite = BaseMask;
                     }
@@ -226,7 +223,7 @@ public class PlayerManager : MonoBehaviour
                 for (int l = 0; l < allPlayers[1].GetComponent<PlayerStats>().maxHealth; l++)
                 {
                     var CurrentMask = Instantiate(MaskPrefabs, MaskAreaMultiPlayer.transform);
-                    if (allPlayers[1].GetComponent<PlayerStats>().maxHealth > l)
+                    if (allPlayers[1].GetComponent<PlayerStats>().CurrentHealth > l)
                     {
                         CurrentMask.GetComponent<Image>().sprite = BaseMask;
                     }
@@ -239,7 +236,7 @@ public class PlayerManager : MonoBehaviour
 
 
                 // Adding any temp Health
-                for (int l = 0; l < allPlayers[0].GetComponent<PlayerStats>().tempHealth; l++)
+                for (int l = 0; l < allPlayers[1].GetComponent<PlayerStats>().tempHealth; l++)
                 {
                     var CurrentTempMask = Instantiate(TempMaskPrefab, MaskAreaMultiPlayer.transform);
                     CurrentTempMask.GetComponent<Image>().sprite = BaseMask;

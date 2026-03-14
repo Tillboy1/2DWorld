@@ -17,7 +17,7 @@ public class NPCBase : InteractableBase
         // Goes To talkingLocation
     }
 
-    public override void LeavingArea()
+    public override void LeavingArea(GameObject PlayerLeaving)
     {
         throw new System.NotImplementedException();
     }

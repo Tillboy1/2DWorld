@@ -41,7 +41,7 @@ public abstract class InteractableBase : MonoBehaviour
     {
         if (collision.GetComponent<PlayerMovement>())
         {
-            LeavingArea();
+            LeavingArea(collision.gameObject);
             playerInRange = false;
             Player = null;
             if (InteractIcon != null)
@@ -49,7 +49,7 @@ public abstract class InteractableBase : MonoBehaviour
         }
     }
 
-    public abstract void LeavingArea();
+    public abstract void LeavingArea(GameObject PlayerLeaving);
 
     public abstract void Interact();
 }
