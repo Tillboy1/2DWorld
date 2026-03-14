@@ -9940,7 +9940,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -562, y: -429}
+  m_AnchoredPosition: {x: -562, y: -364}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &232002431
@@ -25005,7 +25005,7 @@ GameObject:
   - component: {fileID: 617498032}
   - component: {fileID: 617498033}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: InOut Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25531,6 +25531,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1895111904}
+  - {fileID: 996431869}
   - {fileID: 1990809809}
   - {fileID: 913922313}
   - {fileID: 1526833213}
@@ -25539,7 +25540,6 @@ RectTransform:
   - {fileID: 31639904}
   - {fileID: 1533818280}
   - {fileID: 2107191228}
-  - {fileID: 996431869}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -30240,7 +30240,7 @@ GameObject:
   - component: {fileID: 773110819}
   - component: {fileID: 773110820}
   m_Layer: 5
-  m_Name: GameObject (1)
+  m_Name: Long Held Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64082,7 +64082,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -562, y: -364}
+  m_AnchoredPosition: {x: -562, y: -429}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1588984843
@@ -86984,7 +86984,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -1500434286138515679, guid: 2aba357c35b0db84aa58ee0af94207bc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
