@@ -1,14 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using TMPro;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Collections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using static UnityEditor.FilePathAttribute;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -53,7 +48,16 @@ public class PlayerManager : MonoBehaviour
     public GameObject BaseLineUI;
     GameObject[] UIScreens = new GameObject[4];
 
+    [Header("Dialoge")]
+    private Text ConvoName;
+    private Text Convotext;
 
+    private int Parlength;
+    private string p;
+
+    private Queue<string> Names = new Queue<string>();
+    private Queue<string> paragraphs = new Queue<string>();
+    private bool convosationEnded;
 
     public void Awake()
     {
@@ -102,6 +106,20 @@ public class PlayerManager : MonoBehaviour
             if(Objects.gameObject.name == "Middle Icon")
             {
                 SplitScreenUI = Objects.gameObject;
+            }
+        }
+
+        // Dialog
+
+        foreach (Transform objects in ConvostaionUI.transform)
+        {
+            if(objects.gameObject.name == "Character Name")
+            {
+                ConvoName = objects.GetComponent<Text>();
+            }
+            else if (objects.gameObject.name == "Convosation")
+            {
+                Convotext = objects.GetComponent<Text>();
             }
         }
 
@@ -297,6 +315,69 @@ public class PlayerManager : MonoBehaviour
         StartCoroutine(AreaScreen());
     }
     #endregion
+
+    //public void StartConvosation(ConvosationDialogue Dialogue)
+    //{
+    //    ConvostaionUI.SetActive(true);
+    //
+    //    Displaynextparagraph(Dialogue);
+    //}
+    public void Displaynextparagraph(ConvosationDialogue Dialogue)
+    {
+        if (paragraphs.Count == 0)
+        {
+            if (!convosationEnded)
+            {
+                // start convo
+                StartConvosation(Dialogue);
+            }
+
+            else
+            {
+                // end the convosation
+                EndConvosation();
+                return;
+            }
+        }
+
+        // if something in the queue
+        p = paragraphs.Dequeue();
+
+        //Update Convisation text
+        Convotext.text = p;
+
+        if (paragraphs.Count == 0)
+        {
+            convosationEnded = true;
+        }
+    }
+
+    public void StartConvosation(ConvosationDialogue Dialogue)
+    {
+        ConvostaionUI.SetActive(true);
+
+        ConvoName.text = Dialogue.Convosation[0].SpeakerName;
+
+        // Gets the whole convosation from all characters talking
+        for (int i = 0; i < Dialogue.Convosation.Length; i++)
+        {
+            Names.Enqueue(Dialogue.Convosation[i].SpeakerName);
+
+            // Gets each characters paragraphs
+            for (int u = 0; u < Dialogue.Convosation[i].Description.Length; u++)
+            {
+                paragraphs.Enqueue(Dialogue.Convosation[i].Description[u]);
+            }
+        }
+    }
+
+    private void EndConvosation()
+    {
+        //Clear the queue
+
+        convosationEnded = false;
+        ConvostaionUI.SetActive(false);
+    }
 
     public void PlayerJoined(PlayerInput player)
     {

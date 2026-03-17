@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Meeting Karro
   m_EditorClassIdentifier: 
   Id: 0
+  RepeatedConvisation: 0
+  convosationAllowed: 0
   Convosation:
   - SpeakerName: Karro
     Description:
     - Oh hi nice to meet you this doorway is a strange one itsn't it?
     - Oh right introductions, I am Karro a member of the the Tresh Adventures guild
       and you are?
-  - SpeakerName: Desh
+  - SpeakerName: Hegemol
     Description:
-    - I am Desh seaming lost and unknowing of this land
+    - I am Hegemol seaming lost and unknowing of this land
   - SpeakerName: Karro
     Description:
     - 'Oh so you dont know are roles then...
