@@ -59,8 +59,6 @@ public class FlowCamera : MonoBehaviour
                     inputY = playpos.y;
                 }
 
-                //this.transform.position = player.transform.position;
-                //this.transform.position = Vector3.Lerp(this.transform.position, player.transform.position, CameraMoveSpeed * Time.deltaTime);
                 this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(inputX, inputY, playpos.z), CameraMoveSpeed * Time.deltaTime);
             }
         }
@@ -97,17 +95,8 @@ public class FlowCamera : MonoBehaviour
                 inputY = midPointLocation.y;
             }
 
-            //this.transform.position = player.transform.position;
-            //this.transform.position = Vector3.Lerp(this.transform.position, player.transform.position, CameraMoveSpeed * Time.deltaTime);
             this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(inputX, inputY, midPointLocation.z), CameraMoveSpeed * Time.deltaTime);
         }
-    }
-
-    public void NewPlayer()
-    {
-        Debug.Log("New Player");
-        player = FindFirstObjectByType<PlayerMovement>().gameObject;
-        this.transform.position = player.transform.position;
     }
 
     public void ChangeState(bool NewState, Rect Size)

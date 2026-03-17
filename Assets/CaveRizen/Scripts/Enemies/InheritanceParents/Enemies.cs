@@ -52,7 +52,6 @@ public class Enemies : MonoBehaviour
     public float distToPoint;
     public float speed;
 
-
     public void ClosesestPlayer()
     {
         float TempPlayerDistances = 1000000000;
@@ -81,6 +80,7 @@ public class Enemies : MonoBehaviour
             }
         }
     }
+
     public virtual void TakeDamage(int Damage)
     {
         if (currentHealth - Damage <= 0)

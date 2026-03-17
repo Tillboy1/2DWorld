@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerStats : MonoBehaviour
 {
-    public GameObject TestSpawnLocation;
+    private GameObject TestSpawnLocation;
     public Vector2 lastRestLocation;
 
     [Header("UI")]
@@ -57,13 +57,6 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         m_rigidbodyb = GetComponent<Rigidbody2D>();
-        //HealthHolder = StatsUI.transform.GetChild(0).GetChild(1).gameObject;
-        /*
-        foreach (Transform masks in HealthHolder.transform)
-        {
-            MaskUI[HealthHolder.transform.childCount] = masks.gameObject;
-        }
-        */
 
         TestSpawnLocation = GameObject.FindGameObjectWithTag("TestUsage");
         if (TestSpawnLocation != null)
@@ -75,7 +68,6 @@ public class PlayerStats : MonoBehaviour
             this.transform.position = lastRestLocation;
         }
     }
-
     public void Start()
     {
         CurrentHealth = maxHealth;
@@ -299,6 +291,15 @@ public class PlayerStats : MonoBehaviour
             Die();
         }
     }
+    private void Die()
+    {
+        currentlyDead = true;
+        this.GetComponent<SpriteRenderer>().color = Color.black;
+        Debug.Log("Death Animation");
+
+        StartCoroutine(DeathCo());
+    }
+
     public void Bind(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -400,51 +401,8 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
-
+            // other types of object to add to character
         }
-
-
-
-        /* From Old Script
-
-        if (item && item.Item.Weight * amount < CharacterSheet.Instance.CarryingWeight && CharacterSheet.Instance.CarryingWeight > CharacterSheet.Instance.Currentcarrying) // to take all items and remove the items
-        {
-            inventory.AddItem(new Item(item.Item), amount);
-            CharacterSheet.Instance.Currentcarrying += item.Item.Weight * amount;
-            Destroy(objectToPickUp.gameObject);
-        }
-        else if (item && item.Item.Weight < CharacterSheet.Instance.CarryingWeight && CharacterSheet.Instance.CarryingWeight > CharacterSheet.Instance.Currentcarrying) // incase all of them cant be added at once
-        {
-            int count = 0;
-            for (int i = 1; i < amount; i++)
-            {
-                if (item.Item.Weight * i < CharacterSheet.Instance.CarryingWeight)
-                {
-                    count++;
-                }
-                else
-                {
-                    break;
-                }
-            }  // this just counts how many be added to the inventory 
-
-            inventory.AddItem(new Item(item.Item), count);
-            CharacterSheet.Instance.Currentcarrying += item.Item.Weight * count;
-            GroundObject.gameObject.GetComponent<Grounditem>().amount = amount - count;
-        }
-        else
-        {
-            Debug.Log("Take none");
-        }
-        */
-    }
-    private void Die()
-    {
-        currentlyDead = true;
-        this.GetComponent<SpriteRenderer>().color = Color.black;
-        Debug.Log("Death Animation");
-
-        StartCoroutine(DeathCo());
     }
 
     IEnumerator WaitReact()
