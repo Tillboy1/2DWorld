@@ -22832,7 +22832,7 @@ GameObject:
   - component: {fileID: 574321593}
   - component: {fileID: 574321596}
   - component: {fileID: 574321595}
-  - component: {fileID: 574321594}
+  - component: {fileID: 574321597}
   m_Layer: 0
   m_Name: NPC 1 (1)
   m_TagString: Untagged
@@ -22856,25 +22856,6 @@ Transform:
   - {fileID: 2123634561}
   m_Father: {fileID: 1033894995}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &574321594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 574321592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad02caead4cf844cbeb7d087411f4fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  playerInRange: 0
-  hitToInteract: 0
-  talkingLocation: 0
-  lookLeftWhileTalking: 0
-  Convasations:
-  - {fileID: 11400000, guid: 73da984d114d851468a7c23498453a62, type: 2}
 --- !u!61 &574321595
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22976,6 +22957,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &574321597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574321592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a45e0a2842a254d84c6f9c4c5a95bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  playerInRange: 0
+  hitToInteract: 0
+  talkingLocation: 0
+  lookLeftWhileTalking: 0
+  Convasations:
+  - {fileID: 11400000, guid: 73da984d114d851468a7c23498453a62, type: 2}
 --- !u!1 &576275442
 GameObject:
   m_ObjectHideFlags: 0
