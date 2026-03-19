@@ -37,6 +37,6 @@ public class NPCBase : InteractableBase
 
     public override void LeavingArea(GameObject PlayerLeaving)
     {
-        Debug.Log("Leaving area");
+        //Debug.Log("Leaving area");
     }
 }
