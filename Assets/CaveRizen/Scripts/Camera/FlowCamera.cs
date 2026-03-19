@@ -22,7 +22,7 @@ public class FlowCamera : MonoBehaviour
     public bool limmitSouth;
     public bool limmitWest;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (player != null)
         {
