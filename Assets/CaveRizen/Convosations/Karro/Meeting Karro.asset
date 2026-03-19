@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   RepeatedConvisation: 0
-  convosationAllowed: 0
+  convosationAllowed: 1
   Convosation:
   - SpeakerName: Karro
     Description:

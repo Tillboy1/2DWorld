@@ -14,7 +14,7 @@ public class NPCBase : InteractableBase
 
     private void talk()
     {
-
+        Debug.Log("Talking ");
         // Talking Start
         if (Convasations[0].convosationAllowed && !Convasations[0].RepeatedConvisation)
         {
@@ -25,16 +25,7 @@ public class NPCBase : InteractableBase
         {
             for (int i = 0; i < Convasations.Count; i++)
             {
-                if (Convasations[i].convosationAllowed && !Convasations[i].RepeatedConvisation)
-                {
-                    PlayerManager.instance.Displaynextparagraph(Convasations[i]);
-
-                    Convasations[i].convosationAllowed = false;
-                }
-                else if (Convasations[i].convosationAllowed && Convasations[i].RepeatedConvisation)
-                {
-                    PlayerManager.instance.Displaynextparagraph(Convasations[i]);
-                }
+                PlayerManager.instance.Displaynextparagraph(Convasations[i]);
             }
         }
     }
@@ -46,6 +37,6 @@ public class NPCBase : InteractableBase
 
     public override void LeavingArea(GameObject PlayerLeaving)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Leaving area");
     }
 }

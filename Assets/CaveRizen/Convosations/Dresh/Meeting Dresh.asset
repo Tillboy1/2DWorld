@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f075dfcded91745af8881de511f2a8, type: 3}
+  m_Name: Meeting Dresh
+  m_EditorClassIdentifier: 
+  Id: 0
+  RepeatedConvisation: 0
+  convosationAllowed: 0
+  Convosation:
+  - SpeakerName: Hegemol
+    Description:
+    - Hello there what are you digging at?
+  - SpeakerName: Dresh
+    Description:
+    - oh hello sorry i didnt notice you must of been to focused on digging
+  - SpeakerName: Hegemol
+    Description:
+    - ...
+  - SpeakerName: Dresh
+    Description:
+    - OH right yes sorry i was digging at a fossel from the old times which are scatered
+      across low lands
+    - Like for example the Ravanus Gaps and even more so in the silken ridge which
+      seamingly the base site for the accents
+  - SpeakerName: Hegemol
+    Description:
+    - Right... so that would make you a?
+  - SpeakerName: Dresh
+    Description:
+    - that would make me a archeolagist...
+    - Thoes who studdies bug history and prehistory by excavating sites and analyzing
+      artifacts and structures like this one for example
+  - SpeakerName: Hegemol
+    Description:
+    - i guess your digging for Delights
+  - SpeakerName: Hegemol
+    Description:
+    - Ah yes i suppose you could say that how funny haha
+    - well if you have any other jokes of the same sort or even any relics you find
+      on your traval be sure to show them to me or Helick in the ruins Museum

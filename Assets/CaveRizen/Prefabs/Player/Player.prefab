@@ -242,10 +242,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 3
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -536,29 +536,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde941857ebcdb34fa52e303e8515c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TestSpawnLocation: {fileID: 0}
   lastRestLocation: {x: -11, y: -3}
-  UICanvas: {fileID: 0}
-  MenuUI: {fileID: 0}
-  LocationUi: {fileID: 0}
-  ConvostaionUI: {fileID: 0}
-  UIScreens:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   UIOpen: 0
-  StatsUI: {fileID: 0}
   CurrentHealth: 4
   maxHealth: 4
   tempHealth: 2
   interacting: 0
-  inventory: {fileID: 11400000, guid: e6accdcd5467a9b4eb6ea45839f83df3, type: 2}
+  inventory: {fileID: 0}
   worldWideCurrency: 0
   worldWideMaxCurrency: 300
   LocalCurrency: 0000000000000000
   localCurrencyMax: 200
-  statsUI: {fileID: 0}
   attackArea: {fileID: 8272015878648241239}
   attackOfSet: 1.1
   damage: 1

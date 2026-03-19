@@ -49,11 +49,12 @@ public class PlayerManager : MonoBehaviour
     GameObject[] UIScreens = new GameObject[4];
 
     [Header("Dialoge")]
-    private Text ConvoName;
-    private Text Convotext;
+    private TMP_Text ConvoName;
+    private TMP_Text Convotext;
 
     private int Parlength;
     private string p;
+    private string N;
 
     private Queue<string> Names = new Queue<string>();
     private Queue<string> paragraphs = new Queue<string>();
@@ -110,16 +111,15 @@ public class PlayerManager : MonoBehaviour
         }
 
         // Dialog
-
         foreach (Transform objects in ConvostaionUI.transform)
         {
             if(objects.gameObject.name == "Character Name")
             {
-                ConvoName = objects.GetComponent<Text>();
+                ConvoName = objects.gameObject.GetComponent<TMP_Text>();
             }
             else if (objects.gameObject.name == "Convosation")
             {
-                Convotext = objects.GetComponent<Text>();
+                Convotext = objects.gameObject.GetComponent<TMP_Text>();
             }
         }
 
@@ -335,16 +335,20 @@ public class PlayerManager : MonoBehaviour
             else
             {
                 // end the convosation
-                EndConvosation();
+                EndConvosation(Dialogue);
+                ConvostaionUI.SetActive(false);
                 return;
             }
         }
 
         // if something in the queue
+        N = Names.Dequeue();
         p = paragraphs.Dequeue();
 
         //Update Convisation text
+        ConvoName.text = N;
         Convotext.text = p;
+        
 
         if (paragraphs.Count == 0)
         {
@@ -354,29 +358,37 @@ public class PlayerManager : MonoBehaviour
 
     public void StartConvosation(ConvosationDialogue Dialogue)
     {
-        ConvostaionUI.SetActive(true);
+        Debug.Log("Starting convo");
+        if (!ConvostaionUI.activeSelf)
+        {
+            ConvostaionUI.SetActive(true);
+        }
 
         ConvoName.text = Dialogue.Convosation[0].SpeakerName;
 
         // Gets the whole convosation from all characters talking
         for (int i = 0; i < Dialogue.Convosation.Length; i++)
         {
-            Names.Enqueue(Dialogue.Convosation[i].SpeakerName);
-
             // Gets each characters paragraphs
             for (int u = 0; u < Dialogue.Convosation[i].Description.Length; u++)
             {
+                Names.Enqueue(Dialogue.Convosation[i].SpeakerName);
                 paragraphs.Enqueue(Dialogue.Convosation[i].Description[u]);
             }
         }
     }
 
-    private void EndConvosation()
+    private void EndConvosation(ConvosationDialogue Dialogue)
     {
         //Clear the queue
 
         convosationEnded = false;
         ConvostaionUI.SetActive(false);
+
+        if (!Dialogue.RepeatedConvisation)
+        {
+            Dialogue.convosationAllowed = false;
+        }
     }
 
     public void PlayerJoined(PlayerInput player)
@@ -403,7 +415,6 @@ public class PlayerManager : MonoBehaviour
         }
         CheckUIRequired();
     }
-
 
     IEnumerator AreaScreen()
     {
